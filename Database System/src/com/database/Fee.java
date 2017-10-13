@@ -1,7 +1,6 @@
 public class Fee{
 	private String feeType, feeAmount, timePaid, datePaid, orNum, voidORNum;
 	private String bus_plate, employeeID; // we need to connect the fee transaction to the bus payer and the employee doing the transaction
-	private Boolean isPaid;
 	private Boolean isVoid;
 
 	public Fee(String feeType, String feeAmount, String timePaid, String datePaid, String orNum, String bus_plate, String employeeID){
@@ -14,12 +13,6 @@ public class Fee{
 		this.employeeID = employeeID;
 		voidORNum = null;
 		isVoid = false;
-
-		if(Double.parseDouble(feeAmount) > 0){
-			isPaid = true;
-		}else{
-			isPaid = false;
-		}
 	}
 
 	public void voidTransaction(String orNum){
@@ -59,11 +52,7 @@ public class Fee{
 		return voidORNum;
 	}
 
-	public Boolean setPaidStatus(){
-		return isPaid;
-	}
-
-	public Boolean setVoidStatus(){
+	public Boolean getVoidStatus(){
 		return isVoid;
 	}
 }
