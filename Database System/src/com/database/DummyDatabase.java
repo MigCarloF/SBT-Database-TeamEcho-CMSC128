@@ -3,33 +3,29 @@ package com.database;
 import java.util.ArrayList;
 import java.util.List;
 
-public class dummyDatabase { // you can't make top level class as static
+public class DummyDatabase { // you can't make top level class as static
 
-    private static dummyDatabase dummyClass = new dummyDatabase();
-    private ArrayList<dummyFee> listofFees;
+    //allows to have only one instance of this class *SINGLETON*
+    public static final DummyDatabase dummyClass = new DummyDatabase();
 
-    private dummyDatabase(){
+
+    private ArrayList<FeesAccountant> listofFees;
+
+    private DummyDatabase(){
         listofFees = new ArrayList<>();
     }
 
-    public static dummyDatabase getInstance(){
-        if(dummyClass == null){
-            dummyClass = new dummyDatabase();
-        }
-        return dummyClass;
-    }
-
-    public void addListoffees(ArrayList<dummyFee> fees){
+    public void addListoffees(ArrayList<FeesAccountant> fees){
         listofFees = fees;
     }
 
-    public void add(dummyFee fee){
+    public void add(FeesAccountant fee){
         listofFees.add(fee);
     }
 
-    public void remove(dummyFee f){
+    public void remove(FeesAccountant f){
         int ctr = 0;
-        for(dummyFee fee : listofFees){
+        for(FeesAccountant fee : listofFees){
             if(f.getORNum().equals(fee.getORNum())) {
                 listofFees.remove(ctr);
                 break;
@@ -38,14 +34,14 @@ public class dummyDatabase { // you can't make top level class as static
         }
     }
 
-    public ArrayList<dummyFee> getAllFees(){
+    public ArrayList<FeesAccountant> getAllFees(){
         return listofFees;
     }
 
-    public dummyFee getFeeByOrnum(String OR){
+    public FeesAccountant getFeeByOrnum(String OR){
         int ctr = 0;
 
-        for(dummyFee fee : listofFees){
+        for(FeesAccountant fee : listofFees){
             if(fee.getORNum().equals(OR)) {
                 return fee;
             }
@@ -55,18 +51,18 @@ public class dummyDatabase { // you can't make top level class as static
         return null;
     }
 
-    public ArrayList<dummyFee> sortByOrnum(){
+    public ArrayList<FeesAccountant> sortByOrnum(){
         //TODO ---> add implements Comparable<dummyFee> to dummyFee class for easier sorting
 
-        List<dummyFee> dummyFeelist = new ArrayList<>();
+        List<FeesAccountant> dummyFeelist = new ArrayList<>();
         //Collections.sort(dummyFeelist, dummyFee.Comparators.OR);  <-- needed
         return null;
     }
 
-    public ArrayList<dummyFee> sortByDate(){
+    public ArrayList<FeesAccountant> sortByDate(){
         //TODO ---> add implements Comparable<dummyFee> to dummyFee class for easier sorting
 
-        List<dummyFee> dummyFeelist = new ArrayList<>();
+        List<FeesAccountant> dummyFeelist = new ArrayList<>();
         //Collections.sort(dummyFeelist, dummyFee.Comparators.Date);  <-- needed
         return null;
     }
@@ -75,10 +71,10 @@ public class dummyDatabase { // you can't make top level class as static
         displayFees(listofFees);
     }
 
-    public void displayFees(ArrayList<dummyFee> feelist){
-        for(dummyFee fee : feelist){
+    public void displayFees(ArrayList<FeesAccountant> feelist){
+        for(FeesAccountant fee : feelist){
             String out = "OR#: " + fee.getORNum() +
-                    "Date: " + fee.getTime() +
+                    "Date: " + fee.getDatePaid() +
                     "Void: " + fee.isVoid() +
                     "Arrival: " + fee.isArrival() +
                     "Comment: " + fee.getComment();
@@ -97,8 +93,8 @@ public class dummyDatabase { // you can't make top level class as static
 
 
 
-
-    public static void main(String[] args) {
+    public ArrayList<FeesAccountant> getListofFees() {
+        return listofFees;
     }
 
 

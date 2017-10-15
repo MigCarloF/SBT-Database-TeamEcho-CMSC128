@@ -3,6 +3,7 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -35,13 +36,13 @@
                 </ImageView>
             </children>
         </AnchorPane>
-        <TableView id="table" layoutX="86.0" layoutY="202.0" prefHeight="313.0" prefWidth="697.0">
+        <TableView id="table" fx:id="tableView" layoutX="86.0" layoutY="202.0" prefHeight="313.0" prefWidth="697.0">
             <columns>
-                <TableColumn id="col" prefWidth="136.0" resizable="false" text="FRANCHISE" />
-                <TableColumn id="col" prefWidth="136.0" resizable="false" text="BUS TYPE" />
-                <TableColumn id="col" prefWidth="136.0" text="AF" />
-                <TableColumn id="col" prefWidth="136.0" text="LF" />
-                <TableColumn id="col" prefWidth="136.0" text="OR#" />
+                <TableColumn id="col" fx:id="columnFranchise" prefWidth="136.0" resizable="false" text="FRANCHISE" />
+                <TableColumn id="col" fx:id="columnBusType" prefWidth="136.0" resizable="false" text="BUS TYPE" />
+                <TableColumn id="col" fx:id="columnArrivalFee" prefWidth="136.0" text="AF" />
+                <TableColumn id="col" fx:id="columnParkingFee" prefWidth="136.0" text="LF" />
+                <TableColumn id="col" fx:id="columnOrNum" prefWidth="136.0" text="OR#" />
             </columns>
         </TableView>
         <AnchorPane id="date-pane" layoutX="94.0" layoutY="134.0" prefHeight="50.0" prefWidth="204.0">
@@ -59,6 +60,7 @@
                 <Rectangle id="date2" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="27.0" layoutY="27.0" stroke="#5b737880" strokeType="INSIDE" width="463.0" />
                 <Text id="txt-bold" layoutX="14.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SUMMARY" />
                 <Text layoutX="14.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Earnings:" />
+            <Label layoutX="98.0" layoutY="32.0" text="N/A" />
             </children>
         </AnchorPane>   
         <TextField layoutX="359.0" layoutY="514.0" prefHeight="27.0" prefWidth="137.0" />

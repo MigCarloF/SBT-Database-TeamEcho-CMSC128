@@ -1,25 +1,35 @@
 
 package com.database;
 
-public class dummyBus {
+public class DummyBus {
     private String plateNo;
     private String company;
+    private String busType;
     private boolean isMinibus = false;
     private int busNumber;
     
-    public dummyBus(){
+    public DummyBus(){
         plateNo = null;
         company = null;
         busNumber = 0;
     }
     
-    public dummyBus(String plateNo, String company, boolean isMinibus, int busNumber){
+    public DummyBus(String plateNo, String company, boolean isMinibus, int busNumber){
         this.plateNo = plateNo;
         this.company = company;
         this.isMinibus = isMinibus;
+        setBusType(isMinibus() ? "minibus" : "bus");
         this.busNumber = busNumber;
     }
-    
+
+    public String getBusType() {
+        return busType;
+    }
+
+    public void setBusType(String busType) {
+        this.busType = busType;
+    }
+
     public String getPlateNo(){
         return plateNo;
     }
