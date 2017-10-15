@@ -25,33 +25,38 @@ public class dummyFee {
         this.isArrival = isParking;
     }
     
-    private String getComment(){
+    public String getComment(){
         return comment;
     }
-    
-    private void set(String comment){
+
+    public void set(String comment){
         this. comment = comment;
     }
-    
-    private boolean parking(){
+
+    public boolean parking(){
         return isArrival;
     }
-    
-    private String getTime(){
+
+    public String getTime(){
         return time.toString();
     }
 
-    
-    private String getORNum(){
+
+    public String getORNum(){
         return orNum;
     }
-    
-    private void makeVoid(){
+
+    public void makeVoid(){
         isVoid = true;
     }
 
-    
-    
+    public boolean isVoid() {
+        return isVoid;
+    }
+
+    public boolean isArrival() {
+        return isArrival;
+    }
     
     
     
