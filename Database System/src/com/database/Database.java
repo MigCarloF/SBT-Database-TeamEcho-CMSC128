@@ -5,12 +5,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
-// import dummy fee, bus and employee classes here
-// or you can just store this in the same folder with the others
-
 public class Database{
 
-	//allows to have only one instance of this class *SINGLETON*
 	public static final Database database = new Database();
 
 	private ArrayList<Fee> fees = new ArrayList<>();
@@ -129,33 +125,99 @@ public class Database{
 		displayFeeTable();
 		displayBusTable();
 		// displayEmployeeTable();
-		// pause();
+		pause();
 	}
 	/******************************************************************************************/
 
 	/***********************make sure to check in testing if arraylist is null*********************************/
 	public ArrayList<Bus> getBus(ArrayList<String> description, ArrayList<String> values){
-		// System.out.println("\n\n---------------------------------------------------------\n\tinside getBus function");
 		ArrayList<ArrayList<Bus>> found = new ArrayList<>();
 		for(int i = 0; i < description.size(); i++){
-			ArrayList<Bus> buses = getBus(description.get(i), values.get(i));
-			// found.add(getBus(description.get(i), values.get(i)));
-			found.add(buses);
+			found.add(getBus(description.get(i), values.get(i)));
 		}
 
-		ArrayList<Bus> copy = found.get(0);
-		for(int i = 0; i < copy.size(); i++){
-			ArrayList<Bus> current = found.get(i);
-			for(int j = 0; j < current.size(); j++){
-				if(!(copy.get(i).getPlateNo().equals(current.get(j).getPlateNo()))){
-					current.remove(j);
+		ArrayList<Bus> final_ = found.get(0); 
+		if(found.size() > 1){
+			final_ = found.get(0);
+			for(int i = 1; i < found.size(); i++){
+				ArrayList<Bus> current = found.get(i);
+				for(int j = 0; j < final_.size(); j++){
+					Boolean here = false;
+					for(int l = 0; l < current.size(); l++){
+						if(final_.get(j).getPlateNo().equals(current.get(l).getPlateNo())){
+							here = true;
+							break;
+						}
+					}
+					if(!here){
+						final_.remove(j);
+					}
 				}
 			}
 		}
-		return copy;
+
+		return final_;
 	}
 
-	private ArrayList<Fee> getFee(String description, String value){ // descriptions: feeType, feeAmount, etc.
+	public ArrayList<Fee> getFee(ArrayList<String> description, ArrayList<String> values){
+		ArrayList<ArrayList<Fee>> found = new ArrayList<>();
+		for(int i = 0; i < description.size(); i++){
+			found.add(getFee(description.get(i), values.get(i)));
+		}
+
+		ArrayList<Fee> final_ = found.get(0); 
+		if(found.size() > 1){
+			final_ = found.get(0);
+			for(int i = 1; i < found.size(); i++){
+				ArrayList<Fee> current = found.get(i);
+				for(int j = 0; j < final_.size(); j++){
+					Boolean here = false;
+					for(int l = 0; l < current.size(); l++){
+						if(final_.get(j).getOrNum().equals(current.get(l).getOrNum())){
+							here = true;
+							break;
+						}
+					}
+					if(!here){
+						final_.remove(j);
+					}
+				}
+			}
+		}
+
+		return final_;
+	}
+
+	public ArrayList<Employee> getEmployee(ArrayList<String> description, ArrayList<String> values){
+		ArrayList<ArrayList<Employee>> found = new ArrayList<>();
+		for(int i = 0; i < description.size(); i++){
+			found.add(getEmployee(description.get(i), values.get(i)));
+		}
+
+		ArrayList<Employee> final_ = found.get(0); 
+		if(found.size() > 1){
+			final_ = found.get(0);
+			for(int i = 1; i < found.size(); i++){
+				ArrayList<Employee> current = found.get(i);
+				for(int j = 0; j < final_.size(); j++){
+					Boolean here = false;
+					for(int l = 0; l < current.size(); l++){
+						if(final_.get(j).getID().equals(current.get(l).getID())){
+							here = true;
+							break;
+						}
+					}
+					if(!here){
+						final_.remove(j);
+					}
+				}
+			}
+		}
+
+		return final_;
+	}
+
+	public ArrayList<Fee> getFee(String description, String value){ // descriptions: feeType, feeAmount, etc.
 		ArrayList<Fee> found = new ArrayList<>();
 		switch(description){
 			case "feeAmount":
@@ -222,7 +284,6 @@ public class Database{
 
 	public ArrayList<Bus> getBus(String description, String value){ // descriptions: plateNo, company, isMinibus and busNumber
 		ArrayList<Bus> found = new ArrayList<>();
-		// System.out.println("\n********************inside getBus*************************");
 		
 		if(description.equals("plateNo")){
 			for(Bus b : bus_accounts){
@@ -233,7 +294,6 @@ public class Database{
 		}else if(description.equals("company")){
 			for(Bus b : bus_accounts){
 				if(b.getCompany().equals(value)){
-					// System.out.println("added");
 					found.add(b);
 				}
 			}
@@ -249,7 +309,6 @@ public class Database{
 			for(Bus b : bus_accounts){
 					if(b.getBusNumber().equals(value)){
 						found.add(b);
-						// System.out.println("added!");
 					}
 				}
 			}

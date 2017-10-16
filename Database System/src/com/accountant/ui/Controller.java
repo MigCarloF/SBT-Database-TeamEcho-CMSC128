@@ -9,6 +9,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
 
 import java.awt.*;
 import java.lang.reflect.Array;
@@ -56,6 +57,17 @@ public class Controller implements Initializable {
         //Calls for the singleton class
         database = Database.database;
         tableView.setItems(getFees());
+
+        int totalArrival = 0, totalLoading = 0;
+        ObservableList<Fee> feeList = tableView.getItems();
+        for(Fee f : feeList) {
+            totalArrival += Integer.parseInt(f.getArrivalFee());
+            totalLoading += Integer.parseInt(f.getLoadingFee());
+        }
+        txtTotalArrivalFees.setText(String.valueOf(totalArrival));
+        txtTotalLoadingFees.setText(String.valueOf(totalLoading));
+        txtTotalAllFees.setText(String.valueOf(totalArrival+totalLoading));
+        lblTotalEarnings.setText(String.valueOf(totalArrival+totalLoading));
 
     }
 

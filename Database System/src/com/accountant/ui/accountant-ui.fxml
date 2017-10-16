@@ -60,12 +60,12 @@
                 <Rectangle id="date2" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="27.0" layoutY="27.0" stroke="#5b737880" strokeType="INSIDE" width="463.0" />
                 <Text id="txt-bold" layoutX="14.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SUMMARY" />
                 <Text layoutX="14.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Earnings:" />
-            <Label layoutX="98.0" layoutY="32.0" text="N/A" />
+            <Label fx:id="lblTotalEarnings" layoutX="98.0" layoutY="32.0" text="N/A" />
             </children>
         </AnchorPane>   
         <TextField fx:id="txtTotalArrivalFees" layoutX="359.0" layoutY="514.0" prefHeight="27.0" prefWidth="137.0" />
-        <TextField layoutX="495.0" layoutY="514.0" prefHeight="27.0" prefWidth="137.0" />
-        <TextField layoutX="359.0" layoutY="540.0" prefHeight="27.0" prefWidth="273.0" />
+        <TextField fx:id="txtTotalLoadingFees" layoutX="495.0" layoutY="514.0" prefHeight="27.0" prefWidth="137.0" />
+        <TextField fx:id="txtTotalAllFees" layoutX="359.0" layoutY="540.0" prefHeight="27.0" prefWidth="273.0" />
         <Text id="txt-bold" layoutX="310.0" layoutY="559.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TOTAL" />
     </children>
 </AnchorPane>

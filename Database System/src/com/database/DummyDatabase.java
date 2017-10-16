@@ -26,7 +26,7 @@ public class DummyDatabase { // you can't make top level class as static
     public void remove(Fee f){
         int ctr = 0;
         for(Fee fee : listofFees){
-            if(f.getORNum().equals(fee.getORNum())) {
+            if(f.getOrNum().equals(fee.getOrNum())) {
                 listofFees.remove(ctr);
                 break;
             }
@@ -42,7 +42,7 @@ public class DummyDatabase { // you can't make top level class as static
         int ctr = 0;
 
         for(Fee fee : listofFees){
-            if(fee.getORNum().equals(OR)) {
+            if(fee.getOrNum().equals(OR)) {
                 return fee;
             }
             ctr++;
@@ -73,7 +73,7 @@ public class DummyDatabase { // you can't make top level class as static
 
     public void displayFees(ArrayList<Fee> feelist){
         for(Fee fee : feelist){
-            String out = "OR#: " + fee.getORNum() +
+            String out = "OR#: " + fee.getOrNum() +
                     "Date: " + fee.getDatePaid() +
                     "Void: " + fee.isVoid() +
                     "Comment: " + fee.getComment();

@@ -38,6 +38,8 @@ public class Fee {
     /**
      * Initializes bus data
      */
+
+
     private void initBus() {
         bus_plate = bus.getPlateNo();
         busCompany = new SimpleStringProperty(bus.getCompany());
