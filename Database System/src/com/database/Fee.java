@@ -12,15 +12,20 @@ public class Fee {
 	private Boolean isVoid, paidArrival, paidLoading;
 	private Bus bus;
 
-    /**
-     * Constructor
-     * @param timePaid
-     * @param datePaid
-     * @param orNum
-     * @param employeeID
-     * @param bus
-     */
-	public Fee(boolean paidArrival, boolean paidLoading, String timePaid, String orNum, String employeeID, LocalDate datePaid, Bus bus){
+	public void initFees() {
+		arrivalFee = new SimpleStringProperty(paidArrival ? "150" : "0");
+		loadingFee = new SimpleStringProperty(paidLoading ? "50" : "0");
+	}
+
+	/**
+	 * Constructor
+	 * @param timePaid
+	 * @param datePaid
+	 * @param orNum
+	 * @param employeeID
+	 */
+	public Fee(boolean paidArrival, boolean paidLoading, String timePaid, String orNum, String employeeID, LocalDate datePaid, String plateNumber){
+		Database database = Database.database;
 		this.paidArrival = paidArrival;
 		this.paidLoading = paidLoading;
 		initFees();
@@ -28,16 +33,11 @@ public class Fee {
 		this.datePaid = datePaid;
 		this.orNum = new SimpleStringProperty(orNum);
 		this.employeeID = employeeID;
-		this.bus = bus;
+		this.bus = database.getBus("plateNo", plateNumber).get(0);
 		initBus();
 		voidORNum = null;
 		isVoid = false;
 
-	}
-
-	public void initFees() {
-		arrivalFee = new SimpleStringProperty(paidArrival ? "150" : "0");
-		loadingFee = new SimpleStringProperty(paidLoading ? "50" : "0");
 	}
 
     /**
@@ -134,10 +134,6 @@ public class Fee {
 
 	public Boolean getVoid() {
 		return isVoid;
-	}
-
-	public String getORNum() {
-		return orNum.get();
 	}
 
 	public String getComment() {

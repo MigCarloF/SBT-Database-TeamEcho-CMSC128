@@ -76,7 +76,6 @@ public class DummyDatabase { // you can't make top level class as static
             String out = "OR#: " + fee.getORNum() +
                     "Date: " + fee.getDatePaid() +
                     "Void: " + fee.isVoid() +
-                    "Arrival: " + fee.isArrival() +
                     "Comment: " + fee.getComment();
 
             System.out.println(out);

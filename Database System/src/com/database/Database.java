@@ -9,12 +9,14 @@ import java.util.Scanner;
 // or you can just store this in the same folder with the others
 
 public class Database{
+
+	//allows to have only one instance of this class *SINGLETON*
 	public static final Database database = new Database();
+
 	private ArrayList<Fee> fees = new ArrayList<>();
 	private ArrayList<Bus> bus_accounts = new ArrayList<>();
 	private ArrayList<Employee> employee_accounts = new ArrayList<>();
 	private Scanner sc = new Scanner(System.in);
-
 
 	private void clearScreen() throws IOException, InterruptedException{
 		new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
@@ -54,29 +56,22 @@ public class Database{
 	// 	fees.add(new Fee(fee_type, fee_amount, time_paid, date_paid, or_number, findBus(, employee_id));
 	// }
 
-	// public void addBus(String plate_number, String company, Boolean isMinibus, int bus_number){
-	// 	bus_accounts.add(new Bus(plate_number, company, isMinibus, bus_number));
+	// public void addBus(String plate_number, String company, String bus_number){
+	// 	bus_accounts.add(new Bus(plate_number, company, bus_number));
 	// }
 
 	// public void addEmployee(String name, String id, String position){
 	// 	employee_accounts.add(new Employee(name, id, position));
 	// }
 
-
 	/************************para sa mga naniniwala na "CMD is life!"***************************/
 	private void displayFeeTable(){
 		System.out.println("\n\n\t\t\t\t     [Table of Fees]\n");
-		System.out.println("   |   OR #   |  Fee Type  | Amount |    Date    |   Time   |   Bus Number   |   Cashier");
+		System.out.println("   |   OR #   |  Date    |   Time   |   Bus Number   |   Cashier");
 		int counter = 1;
 		for(Fee f : fees){
-			ArrayList<Bus> found = getBus(f.getBus_plate(), "plateNo");
-			int bus_num = 0;
-			if(found != null){
-				bus_num = Integer.parseInt(found.get(0).getBusNumber());
-			}
 			System.out.println("--------------------------------------------------------------------------------------------");
-			System.out.println(" " + counter + " | " + f.getORNum() + "   |   " + f.getFeeType() + "  |  " 
-				+ f.getFeeAmount() + "   | " + f.getDatePaid() + "  | " + f.getTimePaid() + " |    " + bus_num + "     | " + f.getEmployeeID());
+			System.out.println(" " + counter + " | " + f.getORNum() + "   |   " + f.getDatePaid() + "  | " + f.getTimePaid() + " |    " + f.getBus().getBusNumber() + "     | " + f.getEmployeeID());
 			counter++;
 		}
 	}
@@ -133,26 +128,36 @@ public class Database{
 		clearScreen();
 		displayFeeTable();
 		displayBusTable();
-		displayEmployeeTable();
-		pause();
+		// displayEmployeeTable();
+		// pause();
 	}
 	/******************************************************************************************/
 
-	// /***********************make sure to check in testing if arraylist is null*********************************/
-	// public ArrayList<Bus> getBus(ArrayList<String> description, ArrayList<String> values){
-	// 	ArrayList<Bus> found = 
-	// }
+	/***********************make sure to check in testing if arraylist is null*********************************/
+	public ArrayList<Bus> getBus(ArrayList<String> description, ArrayList<String> values){
+		// System.out.println("\n\n---------------------------------------------------------\n\tinside getBus function");
+		ArrayList<ArrayList<Bus>> found = new ArrayList<>();
+		for(int i = 0; i < description.size(); i++){
+			ArrayList<Bus> buses = getBus(description.get(i), values.get(i));
+			// found.add(getBus(description.get(i), values.get(i)));
+			found.add(buses);
+		}
 
-	public ArrayList<Fee> getFee(String value, String description){ // descriptions: feeType, feeAmount, etc.
+		ArrayList<Bus> copy = found.get(0);
+		for(int i = 0; i < copy.size(); i++){
+			ArrayList<Bus> current = found.get(i);
+			for(int j = 0; j < current.size(); j++){
+				if(!(copy.get(i).getPlateNo().equals(current.get(j).getPlateNo()))){
+					current.remove(j);
+				}
+			}
+		}
+		return copy;
+	}
+
+	private ArrayList<Fee> getFee(String description, String value){ // descriptions: feeType, feeAmount, etc.
 		ArrayList<Fee> found = new ArrayList<>();
 		switch(description){
-			case "feeType":
-				for(Fee f : fees){
-					if(f.getFeeType().equals(value)){
-						found.add(f);
-					}
-				}
-				break;
 			case "feeAmount":
 				for(Fee f : fees){
 					if(f.getFeeAmount().equals(value)){
@@ -215,44 +220,43 @@ public class Database{
 		return found;
 	}
 
-	public ArrayList<Bus> getBus(String value, String description){ // descriptions: plateNo, company, isMinibus and busNumber
+	public ArrayList<Bus> getBus(String description, String value){ // descriptions: plateNo, company, isMinibus and busNumber
 		ArrayList<Bus> found = new ArrayList<>();
-		switch(description){
-			case "plateNo":
-				for(Bus b : bus_accounts){
-					if(b.getPlateNo().equals(value)){
+		// System.out.println("\n********************inside getBus*************************");
+		
+		if(description.equals("plateNo")){
+			for(Bus b : bus_accounts){
+				if(b.getPlateNo().equals(value)){
+					found.add(b);
+				}
+			}
+		}else if(description.equals("company")){
+			for(Bus b : bus_accounts){
+				if(b.getCompany().equals(value)){
+					// System.out.println("added");
+					found.add(b);
+				}
+			}
+		}else if(description.equals("isMinibus")){
+			for(Bus b : bus_accounts){
+				if(b.isMinibus() && value.equals("true")){
+					found.add(b);
+				}else if ((!b.isMinibus() && value.equals("false"))){
+					found.add(b);
+				}
+			}
+		}else if(description.equals("busNumber")){
+			for(Bus b : bus_accounts){
+					if(b.getBusNumber().equals(value)){
 						found.add(b);
+						// System.out.println("added!");
 					}
 				}
-				break;
-			case "company":
-				for(Bus b : bus_accounts){
-					if(b.getCompany().equals(value)){
-						found.add(b);
-					}
-				}
-				break;
-			case "isMinibus":
-				for(Bus b : bus_accounts){
-					if(b.isMinibus() && value.equals("true")){
-						found.add(b);
-					}else if ((!b.isMinibus() && value.equals("false"))){
-						found.add(b);
-					}
-				}
-				break;
-			case "busNumber":
-				for(Bus b : bus_accounts){
-					if(b.getBusNumber().equals(Integer.parseInt(value))){
-						found.add(b);
-					}
-				}
-				break;
-		}
+			}
 		return found;
 	} 
 
-	public ArrayList<Employee> getEmployee(String value, String description){ // descriptions: name, id, position
+	public ArrayList<Employee> getEmployee(String description, String value){ // descriptions: name, id, position
 		ArrayList<Employee> found = new ArrayList<>();
 		switch(description){
 			case "name":

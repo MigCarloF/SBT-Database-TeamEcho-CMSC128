@@ -1,9 +1,6 @@
 package com.accountant.ui;
 
-import com.database.Bus;
-import com.database.DummyDatabase;
-import com.database.DummyDatabaseBus;
-import com.database.Fee;
+import com.database.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -32,54 +29,60 @@ public class Controller implements Initializable {
     @FXML
     private TableColumn<Fee, String> columnArrivalFee;
     @FXML
+    private TableColumn<Fee, String> columnLoadingFee;
+    @FXML
     private TableColumn<Fee, String> columnOrNum;
     @FXML
     private Label lblTotalEarnings;
     @FXML
     private TextField txtTotalArrivalFees;
     @FXML
-    private TextField txtTotalParkingFees;
+    private TextField txtTotalLoadingFees;
     @FXML
     private TextField txtTotalAllFees;
 
     private ObservableList<Fee> fees;
-    private DummyDatabase database;
-    private DummyDatabaseBus databaseBus;
+    private Database database;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //initialize columns on table
         columnFranchise.setCellValueFactory(new PropertyValueFactory<Fee, String>("busCompany"));
-        columnBusType.setCellValueFactory(new PropertyValueFactory<Fee,String>("busType"));
-        columnArrivalFee.setCellValueFactory(new PropertyValueFactory<Fee, String>("feeType"));
+        columnBusType.setCellValueFactory(new PropertyValueFactory<Fee, String>("busType"));
+        columnArrivalFee.setCellValueFactory(new PropertyValueFactory<Fee, String>("arrivalFee"));
+        columnLoadingFee.setCellValueFactory(new PropertyValueFactory<Fee, String>("loadingFee"));
         columnOrNum.setCellValueFactory(new PropertyValueFactory<Fee, String>("orNum"));
         //Calls for the singleton class
-        database = DummyDatabase.dummyClass;
-        databaseBus = DummyDatabaseBus.dummyDatabaseBus;
+        database = Database.database;
         tableView.setItems(getFees());
+
+    }
+
+    private void temporaryDatabaseAccess() {
+        //todo TEMPORARY adds data to database
+        LocalDate date = LocalDate.of(2016, Month.DECEMBER, 12);
+        database.addBus(new Bus("ABC 123", "Ceres", "1"));
+        database.addBus(new Bus("ABC 321", "Flybus", "2"));
+        database.addBus(new Bus("ACB 321", "Landbus", "1"));
+        database.addBus(new Bus("ABC 213", "Smolbus"));
+
+        database.addFee(new Fee(false, false, "4:30", "#104430F", "bigboiID", date, "ABC 123"));
+        database.addFee(new Fee(false, true, "4:42", "#104431F", "smolboiID", date, "ABC 321"));
+        database.addFee(new Fee(true, false, "4:52", "#104432F", "mediumboiID", date, "ACB 321"));
+        database.addFee(new Fee(true, true, "4:42", "#104433F", "boiID", date, "ABC 213"));
 
 
     }
 
     private ObservableList<Fee> getFees() {
-        //todo TEMPORARY adds data to database
-        LocalDate date = LocalDate.of(2016, Month.DECEMBER, 12);
-        databaseBus.addBus(new Bus("ABC 123", "Ceres",  "1"));
-        databaseBus.addBus(new Bus("ABC 321", "Flybus",  "2"));
-        databaseBus.addBus(new Bus("ACB 321", "Landbus", "1"));
-        databaseBus.addBus(new Bus("ABC 213", "Smolbus"));
-
-        database.add(new Fee("arrival", "4:30", "#104430F", "bigboiID", date, new Bus("ABC 123", "Ceres", "1")));
-        database.add(new Fee("parking", "4:42", "#104431F", "smolboiID", date, new Bus("ABC 321", "Flybus", "2")));
-        database.add(new Fee("parking", "4:52", "#104432F", "mediumboiID", date, new Bus("ACB 321", "Landbus", "1")));
-        database.add(new Fee("arrival", "4:42", "#104433F", "boiID", date, new Bus("ABC 213", "Smolbus")));
+        temporaryDatabaseAccess();
 
         //Convert arraylist fees to observablelist fees
         fees = FXCollections.observableArrayList();
         ArrayList<Fee> initFees = database.getAllFees();
         fees.addAll(initFees);
 
-        System.out.print(fees.get(0).getBusCompany());
+        int totalArrivalFees;
         return fees;
     }
 }
