@@ -6,8 +6,7 @@ public class dummyFee {
     private boolean isVoid = false;
     private boolean isArrival = false;
     private Date time;
-    //private cashier inputter;
-    private DummyBus bus;
+    private Bus bus;
     private String orNum;
     
     dummyFee(){
@@ -17,7 +16,7 @@ public class dummyFee {
         orNum = null;
     }
     
-    dummyFee(String comment, boolean isParking, DummyBus bus, String orNum){
+    dummyFee(String comment, boolean isParking, Bus bus, String orNum){
         this.comment = comment;
         this.time = new Date();
         this.bus = bus;

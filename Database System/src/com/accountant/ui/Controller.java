@@ -1,7 +1,8 @@
 package com.accountant.ui;
 
-import com.database.DummyBus;
+import com.database.Bus;
 import com.database.DummyDatabase;
+import com.database.DummyDatabaseBus;
 import com.database.FeesAccountant;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -44,7 +45,7 @@ public class Controller implements Initializable {
 
     private ObservableList<FeesAccountant> fees;
     private DummyDatabase database;
-
+    private DummyDatabaseBus databaseBus;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -56,6 +57,7 @@ public class Controller implements Initializable {
         columnOrNum.setCellValueFactory(new PropertyValueFactory<FeesAccountant, String>("orNum"));
         //Calls for the singleton class
         database = DummyDatabase.dummyClass;
+        databaseBus = DummyDatabaseBus.dummyDatabaseBus;
         tableView.setItems(getFees());
 
 
@@ -64,10 +66,15 @@ public class Controller implements Initializable {
     private ObservableList<FeesAccountant> getFees() {
         //todo TEMPORARY adds data to database
         LocalDate date = LocalDate.of(2016, Month.DECEMBER, 12);
-        database.add(new FeesAccountant("arrival", "4:30", "#104430F", "bigboiID", date, new DummyBus("ABC 123", "Ceres", false, 1)));
-        database.add(new FeesAccountant("parking", "4:42", "#104431F", "smolboiID", date, new DummyBus("ABC 321", "Flybus", false, 2)));
-        database.add(new FeesAccountant("parking", "4:52", "#104432F", "mediumboiID", date, new DummyBus("ACB 321", "Landbus", false, 1)));
-        database.add(new FeesAccountant("arrival", "4:42", "#104433F", "boiID", date, new DummyBus("ABC 213", "Smolbus", true, 5)));
+        databaseBus.addBus(new Bus("ABC 123", "Ceres",  1));
+        databaseBus.addBus(new Bus("ABC 321", "Flybus",  2));
+        databaseBus.addBus(new Bus("ACB 321", "Landbus", 1));
+        databaseBus.addBus(new Bus("ABC 213", "Smolbus"));
+
+        database.add(new FeesAccountant("arrival", "4:30", "#104430F", "bigboiID", date, new Bus("ABC 123", "Ceres", 1)));
+        database.add(new FeesAccountant("parking", "4:42", "#104431F", "smolboiID", date, new Bus("ABC 321", "Flybus", 2)));
+        database.add(new FeesAccountant("parking", "4:52", "#104432F", "mediumboiID", date, new Bus("ACB 321", "Landbus", 1)));
+        database.add(new FeesAccountant("arrival", "4:42", "#104433F", "boiID", date, new Bus("ABC 213", "Smolbus")));
 
         //Convert arraylist fees to observablelist fees
         fees = FXCollections.observableArrayList();

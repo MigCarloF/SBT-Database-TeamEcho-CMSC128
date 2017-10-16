@@ -6,28 +6,28 @@ public class DummyDatabaseBus {
     public static final DummyDatabaseBus dummyDatabaseBus = new DummyDatabaseBus();
 
 
-    private ArrayList<DummyBus> listofBuses;
+    private ArrayList<Bus> listofBuses;
 
     private DummyDatabaseBus(){
         listofBuses = new ArrayList<>();
     }
 
-    public void addBus(DummyBus bus){
+    public void addBus(Bus bus){
         listofBuses.add(bus);
     }
 
-    public void remove(FeesAccountant f){
+    public void remove(String plateNo){
         int ctr = 0;
-        for(FeesAccountant fee : listofFees){
-            if(f.getORNum().equals(fee.getORNum())) {
-                listofFees.remove(ctr);
+        for(Bus bus : listofBuses){
+            if(plateNo.equals(bus.getPlateNo())) {
+                listofBuses.remove(ctr);
                 break;
             }
             ctr++;
         }
     }
 
-    public ArrayList<FeesAccountant> getAllFees(){
-        return listofFees;
+    public ArrayList<Bus> getAllFees(){
+        return listofBuses;
     }
 }

@@ -10,7 +10,7 @@ public class FeesAccountant {
 	private SimpleStringProperty busCompany, busType;
 	private LocalDate datePaid;
 	private Boolean isVoid;
-	private DummyBus bus;
+	private Bus bus;
 
     /**
      * Constructor
@@ -21,7 +21,7 @@ public class FeesAccountant {
      * @param employeeID
      * @param bus
      */
-	public FeesAccountant(String feeType, String timePaid, String orNum, String employeeID, LocalDate datePaid, DummyBus bus){
+	public FeesAccountant(String feeType, String timePaid, String orNum, String employeeID, LocalDate datePaid, Bus bus){
 		this.feeType = new SimpleStringProperty(feeType);
 		this.feeAmount = new SimpleStringProperty(feeAmounter());
 		this.timePaid = new SimpleStringProperty(timePaid);
@@ -145,7 +145,7 @@ public class FeesAccountant {
         return busType;
     }
 
-    public DummyBus getBus() {
+    public Bus getBus() {
         return bus;
     }
 
