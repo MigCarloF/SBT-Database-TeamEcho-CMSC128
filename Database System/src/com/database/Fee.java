@@ -6,24 +6,24 @@ import java.time.LocalDate;
 
 public class Fee {
 	private String bus_plate, employeeID; // we need to connect the fee transaction to the bus payer and the employee doing the transaction
-	private SimpleStringProperty feeType, feeAmount, timePaid,  orNum, voidORNum;
+	private SimpleStringProperty arrivalFee, loadingFee, feeAmount, timePaid,  orNum, voidORNum;
 	private SimpleStringProperty busCompany, busType;
 	private LocalDate datePaid;
-	private Boolean isVoid;
+	private Boolean isVoid, paidArrival, paidLoading;
 	private Bus bus;
 
     /**
      * Constructor
-     * @param feeType
      * @param timePaid
      * @param datePaid
      * @param orNum
      * @param employeeID
      * @param bus
      */
-	public Fee(String feeType, String timePaid, String orNum, String employeeID, LocalDate datePaid, Bus bus){
-		this.feeType = new SimpleStringProperty(feeType);
-		this.feeAmount = new SimpleStringProperty(feeAmounter());
+	public Fee(boolean paidArrival, boolean paidLoading, String timePaid, String orNum, String employeeID, LocalDate datePaid, Bus bus){
+		this.paidArrival = paidArrival;
+		this.paidLoading = paidLoading;
+		initFees();
 		this.timePaid = new SimpleStringProperty(timePaid);
 		this.datePaid = datePaid;
 		this.orNum = new SimpleStringProperty(orNum);
@@ -35,9 +35,10 @@ public class Fee {
 
 	}
 
-    private String feeAmounter() {
-	    return feeType.equals("arrival") ? "50" : "150";
-    }
+	public void initFees() {
+		arrivalFee = new SimpleStringProperty(paidArrival ? "150" : "0");
+		loadingFee = new SimpleStringProperty(paidLoading ? "50" : "0");
+	}
 
     /**
      * Initializes bus data
@@ -58,9 +59,35 @@ public class Fee {
         return isVoid;
     }
 
-    /**
+	public String getArrivalFee() {
+		return arrivalFee.get();
+	}
+
+	public SimpleStringProperty arrivalFeeProperty() {
+		return arrivalFee;
+	}
+
+	public void setArrivalFee(String arrivalFee) {
+		this.arrivalFee.set(arrivalFee);
+	}
+
+	public String getLoadingFee() {
+		return loadingFee.get();
+	}
+
+	public SimpleStringProperty loadingFeeProperty() {
+		return loadingFee;
+	}
+
+	public void setLoadingFee(String loadingFee) {
+		this.loadingFee.set(loadingFee);
+	}
+
+	/**
      * getters and setters
      */
+
+
 
 	public String getBus_plate() {
 		return bus_plate;
@@ -68,14 +95,6 @@ public class Fee {
 
 	public String getEmployeeID() {
 		return employeeID;
-	}
-
-	public String getFeeType() {
-		return feeType.get();
-	}
-
-	public SimpleStringProperty feeTypeProperty() {
-		return feeType;
 	}
 
 	public String getFeeAmount() {
@@ -121,10 +140,6 @@ public class Fee {
 		return orNum.get();
 	}
 
-	public boolean isArrival() {
-		return feeType.equals("arrival") ? true : false;
-	}
-
 	public String getComment() {
 		return "";
 	}
@@ -147,10 +162,6 @@ public class Fee {
 
     public Bus getBus() {
         return bus;
-    }
-
-    public void setFeeType(String feeType) {
-        this.feeType.set(feeType);
     }
 
     public void setFeeAmount(String feeAmount) {
