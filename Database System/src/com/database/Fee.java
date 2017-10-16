@@ -12,11 +12,6 @@ public class Fee {
 	private Boolean isVoid, paidArrival, paidLoading;
 	private Bus bus;
 
-	public void initFees() {
-		arrivalFee = new SimpleStringProperty(paidArrival ? "150" : "0");
-		loadingFee = new SimpleStringProperty(paidLoading ? "50" : "0");
-	}
-
 	/**
 	 * Constructor
 	 * @param timePaid
@@ -48,6 +43,11 @@ public class Fee {
         busCompany = new SimpleStringProperty(bus.getCompany());
         busType = new SimpleStringProperty(bus.getBusType());
     }
+
+	public void initFees() {
+		arrivalFee = new SimpleStringProperty(paidArrival ? "150" : "0");
+		loadingFee = new SimpleStringProperty(paidLoading ? "50" : "0");
+	}
 
 	public void voidTransaction(String orNum){
 		isVoid = true;

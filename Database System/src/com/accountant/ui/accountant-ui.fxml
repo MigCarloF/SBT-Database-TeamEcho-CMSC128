@@ -63,7 +63,7 @@
             <Label layoutX="98.0" layoutY="32.0" text="N/A" />
             </children>
         </AnchorPane>   
-        <TextField layoutX="359.0" layoutY="514.0" prefHeight="27.0" prefWidth="137.0" />
+        <TextField fx:id="txtTotalArrivalFees" layoutX="359.0" layoutY="514.0" prefHeight="27.0" prefWidth="137.0" />
         <TextField layoutX="495.0" layoutY="514.0" prefHeight="27.0" prefWidth="137.0" />
         <TextField layoutX="359.0" layoutY="540.0" prefHeight="27.0" prefWidth="273.0" />
         <Text id="txt-bold" layoutX="310.0" layoutY="559.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TOTAL" />

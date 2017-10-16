@@ -71,7 +71,7 @@ public class Database{
 		int counter = 1;
 		for(Fee f : fees){
 			System.out.println("--------------------------------------------------------------------------------------------");
-			System.out.println(" " + counter + " | " + f.getORNum() + "   |   " + f.getDatePaid() + "  | " + f.getTimePaid() + " |    " + f.getBus().getBusNumber() + "     | " + f.getEmployeeID());
+			System.out.println(" " + counter + " | " + f.getOrNum() + "   |   " + f.getDatePaid() + "  | " + f.getTimePaid() + " |    " + f.getBus().getBusNumber() + "     | " + f.getEmployeeID());
 			counter++;
 		}
 	}
@@ -289,7 +289,7 @@ public class Database{
 	public void removeFee(String or_num) throws IOException, InterruptedException{
 		int i = 0;
 		for(Fee f : fees){
-			if(f.getORNum().equals(or_num)){
+			if(f.getOrNum().equals(or_num)){
 				fees.remove(i);
 				break;
 			}
