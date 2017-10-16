@@ -3,9 +3,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
-// import dummy fee, bus and employee classes here
-// or you can just store this in the same folder with the others
-
 public class DummyDatabase2{
 
 	private ArrayList<Fee> fees = new ArrayList<>();
@@ -347,5 +344,4 @@ public class DummyDatabase2{
 		}
 		return sorted;
 	}*/
-
 }
