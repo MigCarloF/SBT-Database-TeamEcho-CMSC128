@@ -13,7 +13,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="bg" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="862.0" stylesheets="@ui.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.accountant.ui.Controller">
+<AnchorPane id="bg" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="862.0" stylesheets="@ui.css" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.accountant.ui.Controller">
     <cursor>
         <Cursor fx:constant="DEFAULT" />
     </cursor>
@@ -38,11 +38,10 @@
         </AnchorPane>
         <TableView id="table" fx:id="tableView" layoutX="86.0" layoutY="202.0" prefHeight="313.0" prefWidth="697.0">
             <columns>
-                <TableColumn id="col" fx:id="columnFranchise" prefWidth="136.0" resizable="false" text="FRANCHISE" />
-                <TableColumn id="col" fx:id="columnBusType" prefWidth="136.0" resizable="false" text="BUS TYPE" />
-                <TableColumn id="col" fx:id="columnArrivalFee" prefWidth="136.0" text="AF" />
-                <TableColumn id="col" fx:id="columnParkingFee" prefWidth="136.0" text="LF" />
-                <TableColumn id="col" fx:id="columnOrNum" prefWidth="136.0" text="OR#" />
+                <TableColumn id="col" fx:id="columnFranchise" prefWidth="170.0" resizable="false" text="FRANCHISE" />
+                <TableColumn id="col" fx:id="columnBusType" prefWidth="170.0" resizable="false" text="BUS TYPE" />
+                <TableColumn id="col" fx:id="columnArrivalFee" prefWidth="170.0" text="AF" />
+                <TableColumn id="col" fx:id="columnOrNum" prefWidth="170.0" text="OR#" />
             </columns>
         </TableView>
         <AnchorPane id="date-pane" layoutX="94.0" layoutY="134.0" prefHeight="50.0" prefWidth="204.0">

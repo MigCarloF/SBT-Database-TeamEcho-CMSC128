@@ -9,23 +9,23 @@ public class DummyDatabase { // you can't make top level class as static
     public static final DummyDatabase dummyClass = new DummyDatabase();
 
 
-    private ArrayList<FeesAccountant> listofFees;
+    private ArrayList<Fee> listofFees;
 
     private DummyDatabase(){
         listofFees = new ArrayList<>();
     }
 
-    public void addListoffees(ArrayList<FeesAccountant> fees){
+    public void addListoffees(ArrayList<Fee> fees){
         listofFees = fees;
     }
 
-    public void add(FeesAccountant fee){
+    public void add(Fee fee){
         listofFees.add(fee);
     }
 
-    public void remove(FeesAccountant f){
+    public void remove(Fee f){
         int ctr = 0;
-        for(FeesAccountant fee : listofFees){
+        for(Fee fee : listofFees){
             if(f.getORNum().equals(fee.getORNum())) {
                 listofFees.remove(ctr);
                 break;
@@ -34,14 +34,14 @@ public class DummyDatabase { // you can't make top level class as static
         }
     }
 
-    public ArrayList<FeesAccountant> getAllFees(){
+    public ArrayList<Fee> getAllFees(){
         return listofFees;
     }
 
-    public FeesAccountant getFeeByOrnum(String OR){
+    public Fee getFeeByOrnum(String OR){
         int ctr = 0;
 
-        for(FeesAccountant fee : listofFees){
+        for(Fee fee : listofFees){
             if(fee.getORNum().equals(OR)) {
                 return fee;
             }
@@ -51,18 +51,18 @@ public class DummyDatabase { // you can't make top level class as static
         return null;
     }
 
-    public ArrayList<FeesAccountant> sortByOrnum(){
+    public ArrayList<Fee> sortByOrnum(){
         //TODO ---> add implements Comparable<dummyFee> to dummyFee class for easier sorting
 
-        List<FeesAccountant> dummyFeelist = new ArrayList<>();
+        List<Fee> dummyFeelist = new ArrayList<>();
         //Collections.sort(dummyFeelist, dummyFee.Comparators.OR);  <-- needed
         return null;
     }
 
-    public ArrayList<FeesAccountant> sortByDate(){
+    public ArrayList<Fee> sortByDate(){
         //TODO ---> add implements Comparable<dummyFee> to dummyFee class for easier sorting
 
-        List<FeesAccountant> dummyFeelist = new ArrayList<>();
+        List<Fee> dummyFeelist = new ArrayList<>();
         //Collections.sort(dummyFeelist, dummyFee.Comparators.Date);  <-- needed
         return null;
     }
@@ -71,8 +71,8 @@ public class DummyDatabase { // you can't make top level class as static
         displayFees(listofFees);
     }
 
-    public void displayFees(ArrayList<FeesAccountant> feelist){
-        for(FeesAccountant fee : feelist){
+    public void displayFees(ArrayList<Fee> feelist){
+        for(Fee fee : feelist){
             String out = "OR#: " + fee.getORNum() +
                     "Date: " + fee.getDatePaid() +
                     "Void: " + fee.isVoid() +
@@ -93,7 +93,7 @@ public class DummyDatabase { // you can't make top level class as static
 
 
 
-    public ArrayList<FeesAccountant> getListofFees() {
+    public ArrayList<Fee> getListofFees() {
         return listofFees;
     }
 

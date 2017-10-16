@@ -6,26 +6,26 @@ public class Bus {
     private String company;
     private String busType;
     private boolean isMinibus = false;
-    private int busNumber;
+    private String busNumber;
     
     public Bus(){
         plateNo = null;
         company = null;
-        busNumber = 0;
+        busNumber = "0";
     }
-    public Bus(String plateNo, String company, int busNumber) {
+    public Bus(String plateNo, String company, String busNumber) {
         this.plateNo = plateNo;
         this.company = company;
         this.isMinibus = false;
-        setBusType("minibus");
-        this.busNumber = 0;
+        setBusType("bus");
+        this.busNumber = busNumber;
     }
     public Bus(String plateNo, String company){
         this.plateNo = plateNo;
         this.company = company;
         this.isMinibus = true;
-        setBusType(isMinibus() ? "minibus" : "bus");
-        this.busNumber = busNumber;
+        setBusType("minibus");
+        this.busNumber = "0";
     }
 
     public String getBusType() {
@@ -60,11 +60,11 @@ public class Bus {
         isMinibus = flag;
     }
     
-    public int getBusNumber(){
+    public String getBusNumber(){
         return busNumber;
     }
     
-    public void setBusNumber(int busNumber){
+    public void setBusNumber(String busNumber){
         this.busNumber = busNumber;
     }
     
