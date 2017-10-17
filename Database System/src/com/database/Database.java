@@ -18,11 +18,6 @@ public class Database{
 		new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
 	}
 
-	private void pause(){
-		System.out.print("\n\n\n\n\n\t\t\t\tPress Enter...");
-		sc.nextLine();
-	}
-
 	public void addFee(Fee f){
 		fees.add(f);
 	}
@@ -106,26 +101,22 @@ public class Database{
 	public void displayFees() throws IOException, InterruptedException{
 		clearScreen();
 		displayFeeTable();
-		pause();
 	}
 
 	public void displayBusAccounts() throws IOException, InterruptedException{
 		clearScreen();
 		displayBusTable();
-		pause();
 	}
 
 	public void displayEmployeeAccounts() throws IOException, InterruptedException{
 		clearScreen();
 		displayEmployeeTable();
-		pause();
 	}
 	public void displayAll() throws IOException, InterruptedException{
 		clearScreen();
 		displayFeeTable();
 		displayBusTable();
 		// displayEmployeeTable();
-		pause();
 	}
 	/******************************************************************************************/
 
@@ -241,13 +232,6 @@ public class Database{
 					}
 				}
 				break;
-			case "voidORNum":
-				for(Fee f : fees){
-					if(f.getVoidORNum().equals(value)){
-						found.add(f);
-					}
-				}
-				break;
 			case "bus_plate":
 				for(Fee f : fees){
 					if(f.getBus_plate().equals(value)){
@@ -262,15 +246,7 @@ public class Database{
 					}
 				}
 				break;
-			case "isVoid":
-				for(Fee f : fees){
-					if(f.getVoid() && value.equals("true")){
-						found.add(f);
-					}else if((!f.getVoid()) && value.equals("false")){
-						found.add(f);
-					}
-				}
-				break;
+
 		}
 		return found;
 	}

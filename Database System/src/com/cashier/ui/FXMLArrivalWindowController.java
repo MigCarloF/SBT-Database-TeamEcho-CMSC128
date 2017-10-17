@@ -1,33 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.cashier.ui;
 
 
-import com.database.Bus;
 import com.database.Database;
+import com.database.DummyDatabaseBus;
 import com.database.Fee;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -59,23 +50,10 @@ public class FXMLArrivalWindowController implements Initializable {
 
     @FXML private ObservableList<Fee> fees;
     @FXML private Database database;
+    @FXML private DummyDatabaseBus databaseBus;
 
-    /**
-     * When this method is called, a new window will appear.
-     * The pop up window is the void window.
-     * @param event
-     * @throws IOException
-     */
-    public void voidButtonPushed(ActionEvent event) throws IOException {
-        Parent voidWindowParent = FXMLLoader.load(getClass().getResource("FXMLVoidWindow.fxml"));
-        Scene voidWindowScene = new Scene(voidWindowParent);
+    private int currentOrNum;
 
-        //This line gets the Stage information
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-
-        window.setScene(voidWindowScene);
-        window.show();
-    }
 
     /**
      * When this method is called, a pop up window will appear.
@@ -107,14 +85,16 @@ public class FXMLArrivalWindowController implements Initializable {
         // to get the selected franchise company in the window
         // TODO: database
         String franchiseSelected = busFDD.getValue().toString();
+        String orNumber = "#" + String.valueOf(currentOrNum);
         System.out.println("Franchise: " + franchiseSelected + ", Type Of Fee: " + typeOfFee
                 + ", and Bus number: " + busNum + ", Time: " + dateFormat + ", Date: " + localDate);
 
-        database.addBus(new Bus("ABC213", "Smolbus"));
-        Fee forDatabase =  new Fee(paidArrival, paidLoading, dateFormat, "", "Cashier 01", localDate, busNum);
+        Fee forDatabase =  new Fee(paidArrival, paidLoading, dateFormat, orNumber, "Cashier 01", localDate, busNum);
+        currentOrNum++;
         Database database = Database.database;
         database.addFee(forDatabase);
         Database.database.displayFees();
+
     }
 
     /**
@@ -138,18 +118,32 @@ public class FXMLArrivalWindowController implements Initializable {
         System.out.println(franchiseSelected);
 
         //Bus temp = new Bus(plateNum, franchiseSelected);
-        Fee forDatabase =  new Fee(true, false, dateFormat, "", "Cashier 01", localDate, plateNum);
+        String orNumber = "#" + String.valueOf(currentOrNum);
+        Fee forDatabase =  new Fee(true, false, dateFormat, orNumber, "Cashier 01", localDate, plateNum);
+        currentOrNum++;
         Database database = Database.database;
         database.addFee(forDatabase);
         Database.database.displayFees();
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize (URL url, ResourceBundle rb) {
         /**
          * These items are for configuring the Combo Box.
          * BUS Combo Box
          */
+        currentOrNum = 0;
+        ArrayList<Fee> listOfFees;
+        try{
+          listOfFees = database.getAllFees();
+        } catch (NullPointerException e) {
+            listOfFees = new ArrayList<Fee>();
+        }
+            for (Fee f : listOfFees) {
+                if (Integer.parseInt(f.getOrNum()) > currentOrNum) {
+                    currentOrNum = Integer.parseInt(f.getOrNum());
+                }
+            }
+        currentOrNum++;
 
         busFDD.getItems().add("CERES LINER");
         busFDD.getItems().addAll("SUNRAYS","SOCORRO","METROLINK");
@@ -161,6 +155,7 @@ public class FXMLArrivalWindowController implements Initializable {
          * These items are for configuring the Combo Box.
          * MINIBUS Combo Box
          */
+
         minibusFDD.getItems().add("CERES LINER");
         minibusFDD.getItems().addAll("JEGANS","CALVO","COROMINAS", "GABE TRANSIT", "CANONEO", "JHADE");
         minibusFDD.setVisibleRowCount(6);
