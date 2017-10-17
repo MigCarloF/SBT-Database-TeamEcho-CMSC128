@@ -24,7 +24,7 @@
                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bbda8cbf" height="97.0" stroke="#5b737880" strokeType="INSIDE" width="862.0" />
                 <Text id="CSBT" layoutX="111.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cebu South Bus Terminal" />
                 <Text layoutX="685.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Acct01" wrappingWidth="70.63959747552872" />
-                <Button layoutX="756.0" mnemonicParsing="false" prefHeight="97.0" prefWidth="106.0" text="Logout" />
+                <Button layoutX="756.0" mnemonicParsing="false" onAction="#test" prefHeight="97.0" prefWidth="106.0" text="Logout" />
             </children>
         </AnchorPane>
         <AnchorPane prefHeight="97.0" prefWidth="106.0">
@@ -51,8 +51,8 @@
                 <Rectangle id="date2" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="27.0" layoutY="27.0" stroke="#5b737880" strokeType="INSIDE" width="206.0" />
                 <Text layoutX="14.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start Date:" />
                 <Text layoutX="14.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="End Date:" />
-            <DatePicker fx:id="dateStartDate" layoutX="82.0" prefHeight="27.0" prefWidth="124.0" promptText="Start Date" />
-            <DatePicker layoutX="82.0" layoutY="27.0" prefHeight="27.0" prefWidth="124.0" promptText="End Date" />
+            <DatePicker fx:id="dateStartDate" layoutX="82.0" onAction="#dateStartDateUpdated" prefHeight="27.0" prefWidth="124.0" promptText="Start Date" />
+            <DatePicker fx:id="dateEndDate" layoutX="82.0" layoutY="27.0" onAction="#dateEndDateUpdated" prefHeight="27.0" prefWidth="124.0" promptText="End Date" />
             </children></AnchorPane>
         <AnchorPane id="date-pane" layoutX="310.0" layoutY="134.0" prefHeight="56.0" prefWidth="487.0">
             <children>

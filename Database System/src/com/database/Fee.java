@@ -6,11 +6,9 @@ import java.time.LocalDate;
 
 public class Fee {
 	private String bus_plate, employeeID; // we need to connect the fee transaction to the bus payer and the employee doing the transaction
-	private SimpleStringProperty arrivalFee, loadingFee, feeAmount, timePaid,  orNum, voidORNum;
-	private SimpleStringProperty busCompany, busType;
+	private String arrivalFee, loadingFee, timePaid,  orNum, voidORNum;
 	private LocalDate datePaid;
 	private Boolean isVoid, paidArrival, paidLoading;
-	private Bus bus;
 
 	/**
 	 * Constructor
@@ -20,16 +18,14 @@ public class Fee {
 	 * @param employeeID
 	 */
 	public Fee(boolean paidArrival, boolean paidLoading, String timePaid, String orNum, String employeeID, LocalDate datePaid, String plateNumber){
-		Database database = Database.database;
 		this.paidArrival = paidArrival;
 		this.paidLoading = paidLoading;
 		initFees();
-		this.timePaid = new SimpleStringProperty(timePaid);
+		this.bus_plate = plateNumber;
+		this.timePaid = timePaid;
 		this.datePaid = datePaid;
-		this.orNum = new SimpleStringProperty(orNum);
+		this.orNum = orNum;
 		this.employeeID = employeeID;
-		this.bus = database.getBus("plateNo", plateNumber).get(0);
-		initBus();
 		voidORNum = null;
 		isVoid = false;
 
@@ -40,56 +36,46 @@ public class Fee {
      */
 
 
-    private void initBus() {
-        bus_plate = bus.getPlateNo();
-        busCompany = new SimpleStringProperty(bus.getCompany());
-        busType = new SimpleStringProperty(bus.getBusType());
-    }
-
 	public void initFees() {
-		arrivalFee = new SimpleStringProperty(paidArrival ? "150" : "0");
-		loadingFee = new SimpleStringProperty(paidLoading ? "50" : "0");
+		arrivalFee = paidArrival ? "150" : "0";
+		loadingFee = paidLoading ? "50" : "0";
 	}
 
 	public void voidTransaction(String orNum){
 		isVoid = true;
-		voidORNum = new SimpleStringProperty(orNum);
+		voidORNum = orNum;
 	}
 
 
-    public boolean isVoid() {
-        return isVoid;
-    }
 
-	public String getArrivalFee() {
-		return arrivalFee.get();
-	}
-
-	public SimpleStringProperty arrivalFeeProperty() {
-		return arrivalFee;
-	}
-
-	public void setArrivalFee(String arrivalFee) {
-		this.arrivalFee.set(arrivalFee);
-	}
-
-	public String getLoadingFee() {
-		return loadingFee.get();
-	}
-
-	public SimpleStringProperty loadingFeeProperty() {
-		return loadingFee;
-	}
-
-	public void setLoadingFee(String loadingFee) {
-		this.loadingFee.set(loadingFee);
-	}
 
 	/**
      * getters and setters
      */
 
+	public boolean isVoid() {
+		return isVoid;
+	}
 
+	public String getArrivalFee() {
+		return arrivalFee;
+	}
+
+	public String arrivalFeeProperty() {
+		return arrivalFee;
+	}
+
+	public void setArrivalFee(String arrivalFee) {
+		this.arrivalFee = arrivalFee;
+	}
+
+	public String getLoadingFee() {
+		return loadingFee;
+	}
+
+	public void setLoadingFee(String loadingFee) {
+		this.loadingFee = loadingFee;
+	}
 
 	public String getBus_plate() {
 		return bus_plate;
@@ -99,34 +85,15 @@ public class Fee {
 		return employeeID;
 	}
 
-	public String getFeeAmount() {
-		return feeAmount.get();
-	}
-
-	public SimpleStringProperty feeAmountProperty() {
-		return feeAmount;
-	}
-
 	public String getTimePaid() {
-		return timePaid.get();
-	}
-
-	public SimpleStringProperty timePaidProperty() {
 		return timePaid;
 	}
-	public String getOrNum() {
-		return orNum.get();
-	}
 
-	public SimpleStringProperty orNumProperty() {
+	public String getOrNum() {
 		return orNum;
 	}
 
 	public String getVoidORNum() {
-		return voidORNum.get();
-	}
-
-	public SimpleStringProperty voidORNumProperty() {
 		return voidORNum;
 	}
 
@@ -142,47 +109,15 @@ public class Fee {
 		return "";
 	}
 
-    public String getBusCompany() {
-        return busCompany.get();
-    }
-
-    public SimpleStringProperty busCompanyProperty() {
-        return busCompany;
-    }
-
-    public String getBusType() {
-        return busType.get();
-    }
-
-    public SimpleStringProperty busTypeProperty() {
-        return busType;
-    }
-
-    public Bus getBus() {
-        return bus;
-    }
-
-    public void setFeeAmount(String feeAmount) {
-        this.feeAmount.set(feeAmount);
-    }
-
     public void setTimePaid(String timePaid) {
-        this.timePaid.set(timePaid);
+        this.timePaid =timePaid;
     }
 
     public void setOrNum(String orNum) {
-        this.orNum.set(orNum);
+        this.orNum = orNum;
     }
 
     public void setVoidORNum(String voidORNum) {
-        this.voidORNum.set(voidORNum);
-    }
-
-    public void setBusCompany(String busCompany) {
-        this.busCompany = new SimpleStringProperty(busCompany);
-    }
-
-    public void setBusType(String busType) {
-        this.busType.set(busType);
+        this.voidORNum = voidORNum;
     }
 }

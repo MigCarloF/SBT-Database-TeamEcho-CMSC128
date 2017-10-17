@@ -48,7 +48,7 @@
                   <Font name="Open Sans" size="14.0" />
                </font>
             </Text>
-            <JFXTextField fx:id="plateNumber" layoutX="29.0" layoutY="213.0" prefHeight="35.0" prefWidth="200.0" />
+            <JFXTextField fx:id="plateNo" layoutX="29.0" layoutY="213.0" prefHeight="35.0" prefWidth="200.0" />
          </children>
       </AnchorPane>
       <JFXButton fx:id="transactButton" buttonType="RAISED" layoutX="587.0" layoutY="35.0" opacity="0.75" scaleShape="false" style="-fx-background-color: #A4E555; -fx-text-fill: #000000;" text="TRANSACT" />
