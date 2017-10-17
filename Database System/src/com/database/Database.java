@@ -67,7 +67,7 @@ public class Database{
 		int counter = 1;
 		for(Fee f : fees){
 			System.out.println("--------------------------------------------------------------------------------------------");
-			System.out.println(" " + counter + " | " + f.getOrNum() + "   |   " + f.getDatePaid() + "  | " + f.getTimePaid() + " |    " + f.getBus().getBusNumber() + "     | " + f.getEmployeeID());
+			System.out.println(" " + counter + " | " + f.getOrNum() + "   |   " + f.getDatePaid() + "  | " + f.getTimePaid() + " |    "  + f.getEmployeeID());
 			counter++;
 		}
 	}
@@ -220,13 +220,6 @@ public class Database{
 	public ArrayList<Fee> getFee(String description, String value){ // descriptions: feeType, feeAmount, etc.
 		ArrayList<Fee> found = new ArrayList<>();
 		switch(description){
-			case "feeAmount":
-				for(Fee f : fees){
-					if(f.getFeeAmount().equals(value)){
-						found.add(f);
-					}
-				}
-				break;
 			case "timePaid":
 				for(Fee f : fees){
 					if(f.getTimePaid().equals(value)){
@@ -312,6 +305,8 @@ public class Database{
 					}
 				}
 			}
+			else
+			System.out.println("Wrong Input for Database getBus");
 		return found;
 	} 
 
