@@ -7,7 +7,7 @@ import java.time.LocalDate;
 public class Fee {
 	private String bus_plate, employeeID; // we need to connect the fee transaction to the bus payer and the employee doing the transaction
 	private String arrivalFee, loadingFee, timePaid,  orNum, voidORNum;
-	private LocalDate datePaid;
+	private String datePaid;
 	private Boolean isVoid, paidArrival, paidLoading;
 
 	/**
@@ -23,7 +23,7 @@ public class Fee {
 		initFees();
 		this.bus_plate = plateNumber;
 		this.timePaid = timePaid;
-		this.datePaid = datePaid;
+		this.datePaid = datePaid.toString();
 		this.orNum = orNum;
 		this.employeeID = employeeID;
 		voidORNum = null;
@@ -97,7 +97,7 @@ public class Fee {
 		return voidORNum;
 	}
 
-	public LocalDate getDatePaid() {
+	public String getDatePaid() {
 		return datePaid;
 	}
 

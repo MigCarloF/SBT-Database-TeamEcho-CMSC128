@@ -15,7 +15,7 @@ public class FeeTable {
         this.arrivalFee = new SimpleStringProperty(fee.getArrivalFee());
         this.loadingFee = new SimpleStringProperty(fee.getLoadingFee());
         this.timePaid = new SimpleStringProperty(fee.getTimePaid());
-        this.date = fee.getDatePaid();
+        this.date = LocalDate.parse(fee.getDatePaid());
         this.orNum = new SimpleStringProperty(fee.getOrNum());
         this.emploeeID = new SimpleStringProperty(fee.getEmployeeID());
         this.plateNo = new SimpleStringProperty(fee.getBus_plate());
