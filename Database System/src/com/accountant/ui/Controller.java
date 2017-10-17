@@ -3,14 +3,21 @@ package com.accountant.ui;
 import com.database.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.Month;
@@ -97,6 +104,16 @@ public class Controller implements Initializable {
         updateTable(convertDate(dateStartDate.getValue()), convertDate(dateEndDate.getValue()));
     }
 
+    public void logoutButtonPushed(ActionEvent event) throws IOException {
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("../../loginform/LoginFormLayout.fxml"));
+            Scene tableViewScene = new Scene(tableViewParent);
+
+            //This line gets the Stage information
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            window.setScene(tableViewScene);
+            window.show();
+    }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //disable manual input of dates and disables selection of days after current day
@@ -129,7 +146,6 @@ public class Controller implements Initializable {
 
         //Calls for the singleton class
         database = Database.database;
-        temporaryDatabaseSetup();
         fees = FXCollections.observableArrayList();
         updateTable(0, 0);
 
@@ -155,15 +171,7 @@ public class Controller implements Initializable {
 
     }
 
-    public void test() {
-        ObservableList<FeeTable> fea = FXCollections.observableArrayList();
-        LocalDate date = LocalDate.now();
-        fea.add(new FeeTable(new Fee(true, true, "4:52", "#104432F", "mediumboiID", date, "ABC123")));
-        tableView.setItems(fea);
-    }
-
     private void updateFees() {
-        readFromDatabase();
         fees.clear();
         //Convert Fee to FeeTable for display
         ArrayList<Fee> initFees = database.getAllFees();
@@ -176,10 +184,6 @@ public class Controller implements Initializable {
         //Convert arraylist fees to observablelist fees
         fees = FXCollections.observableArrayList();
         fees.addAll(convertedFees);
-    }
-
-    private void readFromDatabase() {
-        //todo read from database
     }
 
     /**

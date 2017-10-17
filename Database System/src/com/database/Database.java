@@ -2,7 +2,6 @@ package com.database;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Scanner;
 
 public class Database{
@@ -58,11 +57,11 @@ public class Database{
 	/************************para sa mga naniniwala na "CMD is life!"***************************/
 	private void displayFeeTable(){
 		System.out.println("\n\n\t\t\t\t     [Table of Fees]\n");
-		System.out.println("   |   OR #   |  Date    |   Time   |   Bus Number   |   Cashier");
+		System.out.println("   |   OR #   |  Date    |   Time   |   Plate Number   |   Cashier");
 		int counter = 1;
 		for(Fee f : fees){
 			System.out.println("--------------------------------------------------------------------------------------------");
-			System.out.println(" " + counter + " | " + f.getOrNum() + "   |   " + f.getDatePaid() + "  | " + f.getTimePaid() + " |    "  + f.getEmployeeID());
+			System.out.println(" " + counter + " | " + f.getOrNum() + "   |   " + f.getDatePaid() + "  | " + f.getTimePaid() + " |    " + f.getBus_plate() + "    |    "   + f.getEmployeeID());
 			counter++;
 		}
 	}
@@ -246,7 +245,6 @@ public class Database{
 					}
 				}
 				break;
-
 		}
 		return found;
 	}

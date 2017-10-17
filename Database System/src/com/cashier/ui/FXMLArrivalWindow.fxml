@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="950.0" style="-fx-background-color: #F7F5E6;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cashier.ui.FXMLArrivalWindowController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="950.0" style="-fx-background-color: #F7F5E6;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cashier.ui.FXMLArrivalWindowController">
    <children>
       <AnchorPane opacity="0.75" prefHeight="108.0" prefWidth="950.0" style="-fx-background-color: #a2f555;">
          <children>
@@ -83,6 +83,6 @@
       <JFXButton fx:id="transactButton" buttonType="RAISED" layoutX="587.0" layoutY="35.0" opacity="0.75" scaleShape="false" style="-fx-background-color: #A4E555; -fx-text-fill: #000000;" text="TRANSACT" />
       <JFXButton fx:id="voidButton" buttonType="RAISED" layoutX="694.0" layoutY="35.0" opacity="0.75" style="-fx-background-color: #A4E555; -fx-text-fill: #000000;" text="VOID" />
       <JFXButton fx:id="cashierButton" buttonType="RAISED" layoutX="769.0" layoutY="35.0" opacity="0.75" style="-fx-background-color: #A4E555; -fx-text-fill: #000000;" text="CASH01" />
-      <JFXButton fx:id="logoutButton" buttonType="RAISED" layoutX="856.0" layoutY="35.0" opacity="0.75" style="-fx-background-color: #A4E555; -fx-text-fill: #000000;" text="LOGOUT" />
+      <JFXButton fx:id="logoutButton" buttonType="RAISED" layoutX="856.0" layoutY="35.0" onAction="#logoutButtonPushed" opacity="0.75" style="-fx-background-color: #A4E555; -fx-text-fill: #000000;" text="LOGOUT" />
    </children>
 </AnchorPane>

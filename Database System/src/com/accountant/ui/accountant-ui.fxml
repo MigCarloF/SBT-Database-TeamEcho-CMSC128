@@ -21,10 +21,10 @@
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a4e3561a" height="600.0" stroke="#a2e55540" strokeType="INSIDE" width="862.0" />
         <AnchorPane id="top-bar" prefHeight="65.0" prefWidth="862.0">
             <children>
-                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bbda8cbf" height="97.0" stroke="#5b737880" strokeType="INSIDE" width="862.0" />
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a2f555bf" height="97.0" stroke="#5b737880" strokeType="INSIDE" width="862.0" />
                 <Text id="CSBT" layoutX="111.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cebu South Bus Terminal" />
                 <Text layoutX="685.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Acct01" wrappingWidth="70.63959747552872" />
-                <Button layoutX="756.0" mnemonicParsing="false" onAction="#test" prefHeight="97.0" prefWidth="106.0" text="Logout" />
+                <Button layoutX="756.0" mnemonicParsing="false" onAction="#logoutButtonPushed" prefHeight="97.0" prefWidth="106.0" text="Logout" />
             </children>
         </AnchorPane>
         <AnchorPane prefHeight="97.0" prefWidth="106.0">
@@ -47,7 +47,7 @@
         </TableView>
         <AnchorPane id="date-pane" layoutX="94.0" layoutY="134.0" prefHeight="50.0" prefWidth="204.0">
             <children>
-                <Rectangle id="date1" arcHeight="5.0" arcWidth="5.0" fill="#bbda8cbf" height="27.0" stroke="#5b737880" strokeType="INSIDE" width="206.0" />
+                <Rectangle id="date1" arcHeight="5.0" arcWidth="5.0" fill="#a2f555bf" height="27.0" stroke="#5b737880" strokeType="INSIDE" width="206.0" />
                 <Rectangle id="date2" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="27.0" layoutY="27.0" stroke="#5b737880" strokeType="INSIDE" width="206.0" />
                 <Text layoutX="14.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start Date:" />
                 <Text layoutX="14.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="End Date:" />
@@ -56,7 +56,7 @@
             </children></AnchorPane>
         <AnchorPane id="date-pane" layoutX="310.0" layoutY="134.0" prefHeight="56.0" prefWidth="487.0">
             <children>
-                <Rectangle id="date1" arcHeight="5.0" arcWidth="5.0" fill="#bbda8cbf" height="27.0" stroke="#5b737880" strokeType="INSIDE" width="463.0" />
+                <Rectangle id="date1" arcHeight="5.0" arcWidth="5.0" fill="#a2f555bf" height="27.0" stroke="#5b737880" strokeType="INSIDE" width="463.0" />
                 <Rectangle id="date2" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="27.0" layoutY="27.0" stroke="#5b737880" strokeType="INSIDE" width="463.0" />
                 <Text id="txt-bold" layoutX="14.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SUMMARY" />
                 <Text layoutX="14.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Earnings:" />
