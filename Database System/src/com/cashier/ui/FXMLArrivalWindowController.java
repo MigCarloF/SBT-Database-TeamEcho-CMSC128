@@ -2,7 +2,6 @@ package com.cashier.ui;
 
 
 import com.database.Database;
-import com.database.DummyDatabaseBus;
 import com.database.Fee;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -50,7 +49,6 @@ public class FXMLArrivalWindowController implements Initializable {
 
     @FXML private ObservableList<Fee> fees;
     @FXML private Database database;
-    @FXML private DummyDatabaseBus databaseBus;
 
     private int currentOrNum;
 
