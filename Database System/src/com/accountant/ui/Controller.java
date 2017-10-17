@@ -71,6 +71,7 @@ public class Controller implements Initializable {
             }
         };
         dateStartDate.setDayCellFactory(dayCellFactory);
+        updateTable(convertDate(dateStartDate.getValue()), convertDate(dateEndDate.getValue()));
     }
 
     public void dateStartDateUpdated() {
@@ -93,6 +94,7 @@ public class Controller implements Initializable {
             }
         };
         dateEndDate.setDayCellFactory(dayCellFactory);
+        updateTable(convertDate(dateStartDate.getValue()), convertDate(dateEndDate.getValue()));
     }
 
     @Override
@@ -127,37 +129,45 @@ public class Controller implements Initializable {
 
         //Calls for the singleton class
         database = Database.database;
+        temporaryDatabaseSetup();
         fees = FXCollections.observableArrayList();
-        System.out.println(dateStartDate.getChronology().getCalendarType());
         updateTable(0, 0);
 
     }
 
-    private void temporaryDatabaseAccess() {
+    private void temporaryDatabaseSetup() {
+
         //todo TEMPORARY adds data to database
-        LocalDate date = LocalDate.of(2016, Month.DECEMBER, 12);
+        LocalDate date1 = LocalDate.of(2017, Month.OCTOBER, 12);
+        LocalDate date2 = LocalDate.of(2017, Month.OCTOBER, 13);
+        LocalDate date3 = LocalDate.of(2017, Month.OCTOBER, 14);
+        LocalDate date4 = LocalDate.of(2017, Month.OCTOBER, 15);
         database.addBus(new Bus("ABC123", "Ceres", "1"));
         database.addBus(new Bus("ABC321", "Flybus", "2"));
         database.addBus(new Bus("ACB321", "Landbus", "1"));
         database.addBus(new Bus("ABC213", "Smolbus"));
 
-        database.addFee(new Fee(false, false, "4:30", "#104430F", "bigboiID", date, "ABC123"));
-        database.addFee(new Fee(false, true, "4:42", "#104431F", "smolboiID", date, "ABC321"));
-        database.addFee(new Fee(true, false, "4:52", "#104432F", "mediumboiID", date, "ACB321"));
-        database.addFee(new Fee(true, true, "4:42", "#104433F", "boiID", date, "ABC213"));
+        database.addFee(new Fee(false, false, "4:30", "#104430F", "bigboiID", date1, "ABC123"));
+        database.addFee(new Fee(false, true, "4:42", "#104431F", "smolboiID", date2, "ABC321"));
+        database.addFee(new Fee(true, false, "4:52", "#104432F", "mediumboiID", date3, "ACB321"));
+        database.addFee(new Fee(true, true, "4:42", "#104433F", "boiID", date4, "ABC213"));
 
 
     }
 
     public void test() {
-        System.out.println("wow");
+        ObservableList<FeeTable> fea = FXCollections.observableArrayList();
+        LocalDate date = LocalDate.now();
+        fea.add(new FeeTable(new Fee(true, true, "4:52", "#104432F", "mediumboiID", date, "ABC123")));
+        tableView.setItems(fea);
     }
 
     private void updateFees() {
-        temporaryDatabaseAccess();
-
+        readFromDatabase();
+        fees.clear();
         //Convert Fee to FeeTable for display
         ArrayList<Fee> initFees = database.getAllFees();
+
         ArrayList<FeeTable> convertedFees = new ArrayList<FeeTable>();
         for (Fee f : initFees) {
             convertedFees.add(new FeeTable(f));
@@ -168,17 +178,31 @@ public class Controller implements Initializable {
         fees.addAll(convertedFees);
     }
 
+    private void readFromDatabase() {
+        //todo read from database
+    }
+
     /**
      * Updates Table with new data
      */
     private void updateTable(int startDate, int endDate){
-
         updateFees();
         ObservableList<FeeTable> sortedFees = FXCollections.observableArrayList();
+        //sorts fees in 4 states. Both empty, start empty, end empty, both filled
         for (FeeTable f : fees) {
             int feeDate = convertDate(f.getDate());
             if(startDate == 0 && endDate == 0) {
                 sortedFees.add(f);
+            }
+            else if (startDate == 0) {
+                if(feeDate <= endDate){
+                    sortedFees.add(f);
+                }
+            }
+            else if (endDate == 0) {
+                if(feeDate >= startDate) {
+                    sortedFees.add(f);
+                }
             }
             else if (startDate <= feeDate && feeDate <= endDate) {
                 sortedFees.add(f);
@@ -188,23 +212,29 @@ public class Controller implements Initializable {
         tableView.setItems(sortedFees);
 
         int totalArrival = 0, totalLoading = 0;
+        int unsortedTotal = 0;
         ObservableList<FeeTable> feeList = tableView.getItems();
         for (FeeTable f : feeList) {
             totalArrival += Integer.parseInt(f.getArrivalFee());
             totalLoading += Integer.parseInt(f.getLoadingFee());
         }
+        for (FeeTable f : fees) {
+            unsortedTotal += Integer.parseInt(f.getArrivalFee());
+            unsortedTotal += Integer.parseInt(f.getLoadingFee());
+        }
         txtTotalArrivalFees.setText(String.valueOf(totalArrival));
         txtTotalLoadingFees.setText(String.valueOf(totalLoading));
         txtTotalAllFees.setText(String.valueOf(totalArrival + totalLoading));
-        lblTotalEarnings.setText(String.valueOf(totalArrival + totalLoading));
+        lblTotalEarnings.setText(String.valueOf(unsortedTotal));
 
     }
     /**
      * converts LocalDate to int for easier comparison
      */
     private int convertDate(LocalDate date) {
-        if (date.equals(null)){
-            System.out.println(date.getYear());
+        if (date == null){
+            //return 0 if date picker has nothing
+            return 0;
         }
         int year = date.getYear() * 10000;
         int month = date.getMonthValue() * 100;

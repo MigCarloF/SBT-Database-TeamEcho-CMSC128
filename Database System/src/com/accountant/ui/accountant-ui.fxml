@@ -24,7 +24,7 @@
                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bbda8cbf" height="97.0" stroke="#5b737880" strokeType="INSIDE" width="862.0" />
                 <Text id="CSBT" layoutX="111.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cebu South Bus Terminal" />
                 <Text layoutX="685.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Acct01" wrappingWidth="70.63959747552872" />
-                <Button layoutX="756.0" mnemonicParsing="false" prefHeight="97.0" prefWidth="106.0" text="Logout" />
+                <Button layoutX="756.0" mnemonicParsing="false" onAction="#test" prefHeight="97.0" prefWidth="106.0" text="Logout" />
             </children>
         </AnchorPane>
         <AnchorPane prefHeight="97.0" prefWidth="106.0">
