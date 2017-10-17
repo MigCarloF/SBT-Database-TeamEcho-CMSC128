@@ -28,6 +28,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import ../../
 
 /**
  *
@@ -82,7 +83,7 @@ public class FXMLArrivalWindowController implements Initializable {
      * @param event
      * @throws java.io.IOException
      */
-    public void busConfirmButtonPushed(ActionEvent event) throws IOException {
+    public void busConfirmButtonPushed(ActionEvent event) throws IOException, InterruptedException {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         LocalDate localDate = LocalDate.now();
         
@@ -93,10 +94,12 @@ public class FXMLArrivalWindowController implements Initializable {
         // to get the checked box in the window 
         // TODO: database, if both are allowed to be checked
         String typeOfFee = "";
+        boolean paidArrival = false;
+        boolean paidLoading = false;
         if (arrivalFee.isSelected()) {
-            typeOfFee = "Arrival Fee";
+            paidArrival = true;
         } if (loadingFee.isSelected()) {
-            typeOfFee = "Loading Fee";
+            paidLoading = true;
         }
         
         String busNum = busNumber.getText();
@@ -104,11 +107,13 @@ public class FXMLArrivalWindowController implements Initializable {
         // to get the selected franchise company in the window 
         // TODO: database
         String franchiseSelected = busFDD.getValue().toString();
-        //System.out.println("Franchise: " + franchiseSelected + ", Type Of Fee: " + typeOfFee 
-        //+ ", and Bus number: " + busNum + ", Time: " + dateFormat + ", Date: " + localDate);
-        
-        Bus temp = new Bus(franchiseSelected, busNum);
-        Fee forDatabase =  new Fee(true, false, dateFormat, "", "Cashier 01", localDate, temp);
+        System.out.println("Franchise: " + franchiseSelected + ", Type Of Fee: " + typeOfFee 
+        + ", and Bus number: " + busNum + ", Time: " + dateFormat + ", Date: " + localDate);
+       
+        Fee forDatabase =  new Fee(paidArrival, paidLoading, dateFormat, "", "Cashier 01", localDate, busNum);
+        Database database = Database.database;
+        database.addFee(forDatabase);
+        Database.database.displayFees();
     }
     
     /**
@@ -117,7 +122,7 @@ public class FXMLArrivalWindowController implements Initializable {
      * @param event
      * @throws java.io.IOException
      */
-    public void minibusConfirmButtonPushed(ActionEvent event) throws IOException {
+    public void minibusConfirmButtonPushed(ActionEvent event) throws IOException, InterruptedException {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         LocalDate localDate = LocalDate.now();
         
@@ -131,8 +136,11 @@ public class FXMLArrivalWindowController implements Initializable {
         String plateNum = plateNumber.getText();
         System.out.println(franchiseSelected);
         
-        Bus temp = new Bus(plateNum, franchiseSelected);
-        Fee forDatabase =  new Fee(true, false, dateFormat, "", "Cashier 01", localDate, temp);
+        //Bus temp = new Bus(plateNum, franchiseSelected);
+        /*Fee forDatabase =  new Fee(true, false, dateFormat, "", "Cashier 01", localDate, plateNum);
+        Database database = Database.database;
+        database.addFee(forDatabase);
+        Database.database.displayFees();*/
     }
     
     @Override
