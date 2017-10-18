@@ -11,7 +11,6 @@ public class Database{
 	private ArrayList<Fee> fees = new ArrayList<>();
 	private ArrayList<Bus> bus_accounts = new ArrayList<>();
 	private ArrayList<Employee> employee_accounts = new ArrayList<>();
-	private Scanner sc = new Scanner(System.in);
 
 	private void clearScreen() throws IOException, InterruptedException{
 		new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
@@ -348,68 +347,4 @@ public class Database{
 	}
 
 	/***********************************************/
-
-	/************sorting fees****************
-	private ArrayList<Fee> sortFees(ArrayList<String> items, String description){
-		ArrayList<Boolean> done = new ArrayList<>();
-		for(int i = 0; i < fees.size(); i++){
-			done.add(false);
-		}
-
-		int counter = 0;
-		ArrayList<Fee> sorted = new ArrayList<>();
-		while(counter < fees.size()){
-			String item = items.get(counter);
-			for(int i = 0; i < fees.size(); i++){
-				if(description.equals("timePaid")){
-					if(fees.get(i).getTimePaid().equals(item) && !done.get(i)){
-						sorted.add(fees.get(i));
-						counter++;
-						done.set(i, true);
-					}
-				}else if(description.equals("datePaid")){
-					if(fees.get(i).getDatePaid().equals(item) && !done.get(i)){
-						sorted.add(fees.get(i));
-						counter++;
-						done.set(i, true);
-					}
-				}else if(description.equals("orNum")){
-					if(fees.get(i).getORNum().equals(item) && !done.get(i)){
-						sorted.add(fees.get(i));
-						counter++;
-						done.set(i, true);
-					}
-				}
-			}
-		}
-		return sorted;
-	}
-
-	public ArrayList<Fee> sortFee(String description){ // description: timePaid, datePaid, orNum
-		ArrayList<String> items = new ArrayList<>();
-		switch(description){
-			case "timePaid":
-				for(Fee f : fees){
-					items.add(f.getTimePaid());
-				}
-				break;
-			case "datePaid":
-				for(Fee f : fees){
-					items.add(f.getDatePaid());
-				}
-				break;
-			case "orNum":
-				for(Fee f : fees){
-					items.add(f.getORNum());
-				}
-				break;
-		}
-		Collections.sort(items);
-		ArrayList<Fee> sorted = sortFees(items, description);
-		for(Fee f : sorted){
-			System.out.println(f.getFeeType());
-		}
-		return sorted;
-	}*/
-
 }
