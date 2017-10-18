@@ -138,7 +138,7 @@ public class FXMLArrivalWindowController implements Initializable {
                             break;
                         }
                     }
-                    if(busExists) {
+                    if(busExists && bus.isMinibus() == false) {
                         /**
                          * database interaction is here
                          */
@@ -151,7 +151,7 @@ public class FXMLArrivalWindowController implements Initializable {
                     } else {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setTitle("INCORRECT DATA");
-                        alert.setHeaderText("Bus doesn't exist.");
+                        alert.setHeaderText("Please check your data");
                         alert.setContentText("");
 
                         alert.showAndWait();
@@ -220,7 +220,7 @@ public class FXMLArrivalWindowController implements Initializable {
                     }
                 }
 
-                if(busExists) {
+                if(busExists && bus.isMinibus()) {
                     /**
                      * database interaction is here
                      */
@@ -234,8 +234,8 @@ public class FXMLArrivalWindowController implements Initializable {
                 } else {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("INCORRECT DATA");
-                    alert.setHeaderText("Bus doesn't exist in the database.");
-                    alert.setContentText(" ");
+                    alert.setHeaderText("Check input");
+                    alert.setContentText("");
 
                     alert.showAndWait();
                 }
@@ -248,9 +248,9 @@ public class FXMLArrivalWindowController implements Initializable {
                 alert.showAndWait();
             }catch (IndexOutOfBoundsException er2) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("NO BUS");
-                alert.setHeaderText("No buses on record");
-                alert.setContentText("Contact admin");
+                alert.setTitle("INCORRECT DATA");
+                alert.setHeaderText("Check input");
+                alert.setContentText("Possible Cause:\n-Incorrect bus details");
 
                 alert.showAndWait();
             }
