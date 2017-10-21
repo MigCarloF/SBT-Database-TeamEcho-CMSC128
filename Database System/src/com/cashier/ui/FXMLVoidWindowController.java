@@ -89,15 +89,27 @@ public class FXMLVoidWindowController {
 
     @FXML
     void voidWindowSendRequestPressed(ActionEvent event) throws IOException {
-        // TODO: fix error "java.lang.IllegalStateException: Cannot set style once stage has been set visible"
         FXMLLoader anotherLoader = new FXMLLoader(getClass().getResource("../../cashier/ui/FXMLVoidRequestWindow.fxml"));
         Parent anotherRoot = anotherLoader.load();
         //anotherStage.centerOnScreen();  //does not really work idk
         Scene anotherScene = new Scene(anotherRoot);
         anotherStage.setScene(anotherScene);
         anotherStage.initStyle(StageStyle.UNDECORATED); //removes the title bar of the window
+
+        /**
+         * Insert here:
+         * 1. Check if all inputs needed are inputted
+         * 2. Get all the inputs of the void window
+         * 3. Check if request is in the database
+         * 4. Store OR No, Cashier Name, and reason of void
+         *    for the confirmation void request window
+         * 5. The next step will be in the FXMLVoidRequestWindowController class
+         */
+
+        voidWindowVoidPressed(event);
         anotherStage.show();
     }
+
 
     @FXML
     void voidWindowTransactPressed(ActionEvent event) throws IOException {

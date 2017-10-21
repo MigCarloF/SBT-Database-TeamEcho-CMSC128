@@ -28,8 +28,8 @@ public class FXMLVoidRequestWindowController {
     @FXML
     void voidRequestWindowCancelPressed(ActionEvent event) throws IOException {
         Stage stage = (Stage) voidRequestWindowCancel.getScene().getWindow();
+        CashierMain.cancelPressed = true;
         stage.close();
-
     }
 
     @FXML

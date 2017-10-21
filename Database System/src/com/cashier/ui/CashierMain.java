@@ -15,7 +15,9 @@ import javafx.stage.Stage;
  *
  * @author alboresallyssa
  */
+
 public class CashierMain extends Application {
+    public static boolean cancelPressed = false;
 
     @Override
     public void start(Stage stage) throws Exception {
