@@ -33,5 +33,4 @@ public class FXMLExitWindowController {
     void exitWindowPrintPressed(ActionEvent event) {
 
     }
-
 }

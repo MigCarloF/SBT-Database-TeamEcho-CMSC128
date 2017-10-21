@@ -4,6 +4,7 @@ package com.cashier.ui;
 import com.database.Bus;
 import com.database.Database;
 import com.database.Fee;
+import com.jfoenix.controls.JFXButton;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -37,7 +38,7 @@ public class FXMLArrivalWindowController implements Initializable {
     @FXML
     private Button transactButton;
     @FXML
-    private Button voidButton;
+    private JFXButton voidButton;
     @FXML
     private Button cashierButton;
     @FXML
@@ -262,6 +263,11 @@ public class FXMLArrivalWindowController implements Initializable {
 
             alert.showAndWait();
         }
+    }
+
+    @FXML
+    void voidButtonPushed(ActionEvent event) {
+
     }
 
     public void initialize(URL url, ResourceBundle rb) {
