@@ -1,13 +1,10 @@
 package com.accountant.ui;
 
-import com.sun.org.apache.xpath.internal.SourceTree;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import java.time.LocalDate;
 
 public class Main extends Application {
 
