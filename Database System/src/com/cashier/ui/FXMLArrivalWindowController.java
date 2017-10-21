@@ -1,14 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.cashier.ui;
 
 
+import com.database.Bus;
 import com.database.Database;
-import com.database.DummyDatabase;
-import com.database.DummyDatabaseBus;
 import com.database.Fee;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -18,10 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -29,130 +20,271 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
 
 /**
- *
  * @author alboresallyssa
  */
 public class FXMLArrivalWindowController implements Initializable {
     //These items are for the buttons in arrival window
-    @FXML private Button busPrintButton;
-    @FXML private Button minibusPrintButton;
+    @FXML
+    private Button busPrintButton;
+    @FXML
+    private Button minibusPrintButton;
 
-    @FXML private Button transactButton;
-    @FXML private Button voidButton;
-    @FXML private Button cashierButton;
-    @FXML private Button logoutButton;
+    @FXML
+    private Button transactButton;
+    @FXML
+    private Button voidButton;
+    @FXML
+    private Button cashierButton;
+    @FXML
+    private Button logoutButton;
 
     //These items are for the combo boxes in arrival window
-    @FXML private ComboBox busFDD;
-    @FXML private ComboBox minibusFDD;
+    @FXML
+    private ComboBox busFDD;
+    @FXML
+    private ComboBox minibusFDD;
 
     //These items are for the check boxes in arrival window
-    @FXML private CheckBox arrivalFee;
-    @FXML private CheckBox loadingFee;
+    @FXML
+    private CheckBox arrivalFee;
+    @FXML
+    private CheckBox loadingFee;
 
     //These items are for the text fields in arrival window
-    @FXML private TextField busNumber;
-    @FXML private TextField plateNumber;
+    @FXML
+    private TextField busNumber;
+    @FXML
+    private TextField plateNumber;
 
-    @FXML private ObservableList<Fee> fees;
-    @FXML private DummyDatabase database;
-    @FXML private DummyDatabaseBus databaseBus;
+    @FXML
+    private ObservableList<Fee> fees;
+    @FXML
+    private Database database;
 
-    /**
-     * When this method is called, a new window will appear.
-     * The pop up window is the void window.
-     * @param event
-     * @throws java.io.IOException
-     */
-    public void voidButtonPushed(ActionEvent event) throws IOException {
-        Parent voidWindowParent = FXMLLoader.load(getClass().getResource("FXMLVoidWindow.fxml"));
-        Scene voidWindowScene = new Scene(voidWindowParent);
+    private int currentOrNum;
+
+
+    public void logoutButtonPushed(ActionEvent event) throws IOException {
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("../../loginform/LoginFormLayout.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
 
         //This line gets the Stage information
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-        window.setScene(voidWindowScene);
+        window.setScene(tableViewScene);
         window.show();
     }
-
     /**
      * When this method is called, a pop up window will appear.
      * The pop up window is the confirmation window for the BUS.
+     *
      * @param event
-     * @throws java.io.IOException
+     * @throws IOException
      */
     public void busConfirmButtonPushed(ActionEvent event) throws IOException, InterruptedException {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         LocalDate localDate = LocalDate.now();
 
-        Date date = new java.util.Date();
+        Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
         String dateFormat = sdf.format(date.getTime());
 
-        // to get the checked box in the window
-        // TODO: database, if both are allowed to be checked
-        String typeOfFee = "";
-        boolean paidArrival = false;
-        boolean paidLoading = false;
-        if (arrivalFee.isSelected()) {
-            paidArrival = true;
-        } if (loadingFee.isSelected()) {
-            paidLoading = true;
+        try {
+            String typeOfFee = "";
+            boolean paidArrival = false;
+            boolean paidLoading = false;
+            if (arrivalFee.isSelected()) {
+                paidArrival = true;
+            }
+            if (loadingFee.isSelected()) {
+                paidLoading = true;
+            }
+
+            String busNum = busNumber.getText();
+
+            if (loadingFee.isSelected() == false && arrivalFee.isSelected() == false) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("No Fee type");
+                alert.setHeaderText("Select Fee to be paid");
+                alert.setContentText("");
+
+                alert.showAndWait();
+
+            } else {
+                String franchiseSelected = busFDD.getValue().toString();
+                String orNumber = "#" + String.valueOf(currentOrNum);
+
+                //Find bus based on franchise and busNum
+                ArrayList<String> desc = new ArrayList<String>();
+                ArrayList<String> value = new ArrayList<String>();
+                desc.add("busNumber");
+                desc.add("company");
+                value.add(busNum);
+                value.add(franchiseSelected);
+                try {
+                    Bus bus = database.getBus(desc, value).get(0);
+
+                    //check if bus plate number exists in database
+                    ArrayList<Bus> buses = database.getAllBuses();
+                    boolean busExists = false;
+                    for(Bus b : buses) {
+                        if(b.getPlateNo().equals(bus.getPlateNo())) {
+                            busExists = true;
+                            break;
+                        }
+                    }
+                    if(busExists && bus.isMinibus() == false) {
+                        /**
+                         * database interaction is here
+                         */
+                        Fee forDatabase = new Fee(paidArrival, paidLoading, dateFormat, orNumber, "Cashier 01", localDate, bus.getPlateNo());
+                        currentOrNum++;
+                        Database database = Database.database;
+                        database.addFee(forDatabase);
+                        Database.database.displayFees();
+                        database.displayAll();
+                    } else {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("INCORRECT DATA");
+                        alert.setHeaderText("Please check your data");
+                        alert.setContentText("");
+
+                        alert.showAndWait();
+                    }
+                }catch (NullPointerException er) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("NO BUS");
+                    alert.setHeaderText("No buses on record");
+                    alert.setContentText("Contact admin");
+
+                    alert.showAndWait();
+                }catch (IndexOutOfBoundsException er1) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("NO BUS");
+                    alert.setHeaderText("No buses on record");
+                    alert.setContentText("Contact admin");
+
+                    alert.showAndWait();
+                }
+
+            }
+        } catch (NullPointerException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("INCOMPLETE DATA");
+            alert.setHeaderText("Please fill in all data.");
+            alert.setContentText("");
+
+            alert.showAndWait();
         }
 
-        String busNum = busNumber.getText();
 
-        // to get the selected franchise company in the window
-        // TODO: database
-        String franchiseSelected = busFDD.getValue().toString();
-        System.out.println("Franchise: " + franchiseSelected + ", Type Of Fee: " + typeOfFee
-                + ", and Bus number: " + busNum + ", Time: " + dateFormat + ", Date: " + localDate);
-
-        Fee forDatabase =  new Fee(paidArrival, paidLoading, dateFormat, "", "Cashier 01", localDate, busNum);
-        Database database = Database.database;
-        database.addFee(forDatabase);
-        Database.database.displayFees();
     }
 
     /**
      * When this method is called, a pop up window will appear.
      * The pop up window is the confirmation window for the MINIBUS.
+     *
      * @param event
-     * @throws java.io.IOException
+     * @throws IOException
      */
     public void minibusConfirmButtonPushed(ActionEvent event) throws IOException, InterruptedException {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         LocalDate localDate = LocalDate.now();
 
-        Date date = new java.util.Date();
+        Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
         String dateFormat = sdf.format(date.getTime());
 
-        // to get the selected franchise company in the window
-        // TODO: database
-        String franchiseSelected = minibusFDD.getValue().toString();
-        String plateNum = plateNumber.getText();
-        System.out.println(franchiseSelected);
+        try {
+            String franchiseSelected = minibusFDD.getValue().toString();
+            String plateNum1 = plateNumber.getText();
+            // autocaps the plate number inputted
+            String plateNum = plateNum1.toUpperCase();
 
-        //Bus temp = new Bus(plateNum, franchiseSelected);
-        Fee forDatabase =  new Fee(true, false, dateFormat, "", "Cashier 01", localDate, plateNum);
-        Database database = Database.database;
-        database.addFee(forDatabase);
-        Database.database.displayFees();
+
+            try {
+                Bus bus = database.getBus("plateNo", plateNum).get(0);
+
+                //check if bus plate number exists in database
+                ArrayList<Bus> buses = database.getAllBuses();
+                boolean busExists = false;
+                for(Bus b : buses) {
+                    if(b.getPlateNo().equals(bus.getPlateNo())) {
+                        busExists = true;
+                        break;
+                    }
+                }
+
+                if(busExists && bus.isMinibus()) {
+                    /**
+                     * database interaction is here
+                     */
+                    //Bus temp = new Bus(plateNum, franchiseSelected);
+                    String orNumber = "#" + String.valueOf(currentOrNum);
+                    Fee forDatabase = new Fee(true, false, dateFormat, orNumber, "Cashier 01", localDate, plateNum);
+                    currentOrNum++;
+                    database.addFee(forDatabase);
+                    Database.database.displayFees();
+                    database.displayAll();
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("INCORRECT DATA");
+                    alert.setHeaderText("Check input");
+                    alert.setContentText("");
+
+                    alert.showAndWait();
+                }
+            }catch (NullPointerException er) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("NO BUS");
+                alert.setHeaderText("No buses on record");
+                alert.setContentText("Please contact the admin.");
+
+                alert.showAndWait();
+            }catch (IndexOutOfBoundsException er2) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("INCORRECT DATA");
+                alert.setHeaderText("Check input");
+                alert.setContentText("Possible Cause:\n-Incorrect bus details");
+
+                alert.showAndWait();
+            }
+        } catch(NullPointerException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("INCOMPLETE DATA");
+            alert.setHeaderText("Please fill in all data.");
+            alert.setContentText(" ");
+
+            alert.showAndWait();
+        }
     }
 
-    @Override
     public void initialize(URL url, ResourceBundle rb) {
         /**
          * These items are for configuring the Combo Box.
          * BUS Combo Box
          */
+        currentOrNum = 0;
+        ArrayList<Fee> listOfFees;
+        try {
+            listOfFees = database.getAllFees();
+        } catch (NullPointerException e) {
+            listOfFees = new ArrayList<Fee>();
+        }
+        for (Fee f : listOfFees) {
+            if (Integer.parseInt(f.getOrNum()) > currentOrNum) {
+                currentOrNum = Integer.parseInt(f.getOrNum());
+            }
+        }
+        currentOrNum++;
+
         busFDD.getItems().add("CERES LINER");
-        busFDD.getItems().addAll("SUNRAYS","SOCORRO","METROLINK");
+        busFDD.getItems().addAll("SUNRAYS", "SOCORRO", "METROLINK");
         busFDD.setVisibleRowCount(3);
         busFDD.setEditable(true);
         busFDD.setPromptText("BUS");
@@ -161,10 +293,14 @@ public class FXMLArrivalWindowController implements Initializable {
          * These items are for configuring the Combo Box.
          * MINIBUS Combo Box
          */
+
         minibusFDD.getItems().add("CERES LINER");
-        minibusFDD.getItems().addAll("JEGANS","CALVO","COROMINAS", "GABE TRANSIT", "CANONEO", "JHADE");
+        minibusFDD.getItems().addAll("JEGANS", "CALVO", "COROMINAS", "GABE TRANSIT", "CANONEO", "JHADE");
         minibusFDD.setVisibleRowCount(6);
         minibusFDD.setEditable(true);
         minibusFDD.setPromptText("MINIBUS");
+
+        //TODO DELETE THIS AFTER DATABASE IS DONE
+        database = Database.database;
     }
 }

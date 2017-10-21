@@ -2,7 +2,6 @@ package com.database;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Scanner;
 
 public class Database{
@@ -18,116 +17,151 @@ public class Database{
 		new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
 	}
 
-	private void pause(){
-		System.out.print("\n\n\n\n\n\t\t\t\tPress Enter...");
-		sc.nextLine();
-	}
-
+	// adds the fee transaction 'f' to the list of fees
 	public void addFee(Fee f){
 		fees.add(f);
 	}
 
+	// adds the employee account 'e' to the list of employee accounts
 	public void addEmployee(Employee e){
 		employee_accounts.add(e);
 	}
 
+	// adds the bus account 'b' to the list of bus accounts
 	public void addBus(Bus b){
 		bus_accounts.add(b);
 	}
 
+	// returns an arraylist of all the fee transactions
 	public ArrayList<Fee> getAllFees(){
 		return fees;
 	}
 
+	// returns an arraylist of all the bus accounts
 	public ArrayList<Bus> getAllBuses(){
 		return bus_accounts;
 	}
 
+	// returns an arraylist of all the employee accounts
 	public ArrayList<Employee> getAllEmployees(){
 		return employee_accounts;
 	}
 
-	// public void addFee(String fee_type, String time_paid, String date_paid, String or_number, String bus_plate, String employee_id){
-	// 	// someone suggested that it doesn't have to be the employee_id, we can also use the name, but i'm just gonna use the id here :) 
-	// 	fees.add(new Fee(fee_type, fee_amount, time_paid, date_paid, or_number, findBus(, employee_id));
-	// }
-
-	// public void addBus(String plate_number, String company, String bus_number){
-	// 	bus_accounts.add(new Bus(plate_number, company, bus_number));
-	// }
-
-	// public void addEmployee(String name, String id, String position){
-	// 	employee_accounts.add(new Employee(name, id, position));
-	// }
-
 	/************************para sa mga naniniwala na "CMD is life!"***************************/
+	// displays all the fees in a table
 	private void displayFeeTable(){
 		System.out.println("\n\n\t\t\t\t     [Table of Fees]\n");
-		System.out.println("   |   OR #   |  Date    |   Time   |   Bus Number   |   Cashier");
-		int counter = 1;
-		for(Fee f : fees){
-			System.out.println("--------------------------------------------------------------------------------------------");
-			System.out.println(" " + counter + " | " + f.getOrNum() + "   |   " + f.getDatePaid() + "  | " + f.getTimePaid() + " |    "  + f.getEmployeeID());
-			counter++;
+		if(fees.size() == 0 || fees == null){
+			System.out.println("\t\t\tNo fee transaction found!");
+		}else{
+			System.out.println("   |   OR #   |  Date    |   Time   |   Bus Number   |   Cashier");
+			int counter = 1;
+			for(Fee f : fees){
+				System.out.println("--------------------------------------------------------------------------------------------");
+				System.out.println(" " + counter + " | " + f.getOrNum() + "   |   " + f.getDatePaid() + "  | " + f.getTimePaid() + " |    " + getBusByPlate(f.getBus_plate()).getBusNumber() + "     | " + f.getEmployeeID());
+				counter++;
+			}
 		}
 	}
 
+	// displays all the bus accounts in a table
 	private void displayBusTable(){
 		System.out.println("\n\n\t\t\t\t     [Bus Accounts]\n");
-		System.out.println("   |   Company   |   Plate #   |  Bus Type  |  Bus Number");
-		int counter = 1;
-		for(Bus b : bus_accounts){
-			String bus_type = "";
-			if(b.isMinibus()){
-				bus_type = "minibus";
-			}else{
-				bus_type = "regular";
+		if(bus_accounts.size() == 0 || bus_accounts == null){
+			System.out.println("\t\t\tNo bus account found!");
+		}else{
+			System.out.println("   |   Company   |   Plate #   |  Bus Type  |  Bus Number");
+			int counter = 1;
+			for(Bus b : bus_accounts){
+				String bus_type = "";
+				if(b.isMinibus()){
+					bus_type = "minibus";
+				}else{
+					bus_type = "regular";
+				}
+
+				System.out.println("------------------------------------------------------------");
+				System.out.println(" " + counter + " |    " + b.getCompany() + "    |   " + b.getPlateNo() + "    |   " + bus_type + "  | " + b.getBusNumber());
+
+				counter++;
 			}
-
-			System.out.println("------------------------------------------------------------");
-			System.out.println(" " + counter + " |    " + b.getCompany() + "    |   " + b.getPlateNo() + "    |   " + bus_type + "  | " + b.getBusNumber());
-
-			counter++;
 		}
 	}
 
+	// displays all the employee accounts in a table
 	private void displayEmployeeTable(){
 		System.out.println("\n\n\t\t\t\t     [Employee Accounts]\n");
-		System.out.println("   |         Name          |     ID     |    Position  ");
-		int counter = 1;
-		for(Employee e : employee_accounts){
-			System.out.println("------------------------------------------------------------");
-			System.out.println(" " + counter + " |  " + e.getName() + "    |   " + e.getID() + "    |   " + e.getPosition());
+		if(employee_accounts.size() == 0 || employee_accounts == null){
+			System.out.println("\t\t\tNo employee account found!");
+		}else{
+			System.out.println("   |         Name          |     ID     |    Position  ");
+			int counter = 1;
+			for(Employee e : employee_accounts){
+				System.out.println("------------------------------------------------------------");
+				System.out.println(" " + counter + " |  " + e.getName() + "    |   " + e.getID() + "    |   " + e.getPosition());
 
-			counter++;
+				counter++;
+			}	
 		}
 	}
 
+	// called by outside functions to display the fee
 	public void displayFees() throws IOException, InterruptedException{
 		clearScreen();
 		displayFeeTable();
-		pause();
 	}
 
+	// called by outside functions to display the bus accounts
 	public void displayBusAccounts() throws IOException, InterruptedException{
 		clearScreen();
 		displayBusTable();
-		pause();
 	}
 
+	// called by outside functions to display the employee accounts
 	public void displayEmployeeAccounts() throws IOException, InterruptedException{
 		clearScreen();
 		displayEmployeeTable();
-		pause();
 	}
+
+	// called by outside functions to display all the fee transactions, employee accounts and bus accounts
 	public void displayAll() throws IOException, InterruptedException{
 		clearScreen();
 		displayFeeTable();
 		displayBusTable();
-		// displayEmployeeTable();
-		pause();
+		displayEmployeeTable();
 	}
 	/******************************************************************************************/
+
+	/***********************make sure to check in testing if arraylist is null*********************************/
+	// returns the bus with the plate number equal to the balue of the parameter passed unto the function
+	public Bus getBusByPlate(String plate){
+		for(Bus b : bus_accounts){
+			if(b.getPlateNo().equals(plate)){
+				return b;
+			}
+		}
+		return null;
+	}
+
+	// returns the bus with the company and bus number equal to the values of the perimeter given respectively
+	public Bus getBusByCompanyAndNumber(String company, String busNum){
+		for(Bus b : bus_accounts){
+			if(b.getCompany().equals(company) && b.getBusNumber().equals(busNum)){
+				return b;
+			}
+		}
+		return null;
+	}
+
+	// returns the fee transaction with the OR number equal to the value passed unto the function
+	public Fee getFeeByORNum(String orNum){
+		for(Fee f : fees){
+			if(f.getOrNum().equals(orNum)){
+				return f;
+			}
+		}
+		return null;
+	}
 
 	/***********************make sure to check in testing if arraylist is null*********************************/
 	public ArrayList<Bus> getBus(ArrayList<String> description, ArrayList<String> values){
@@ -241,13 +275,6 @@ public class Database{
 					}
 				}
 				break;
-			case "voidORNum":
-				for(Fee f : fees){
-					if(f.getVoidORNum().equals(value)){
-						found.add(f);
-					}
-				}
-				break;
 			case "bus_plate":
 				for(Fee f : fees){
 					if(f.getBus_plate().equals(value)){
@@ -258,15 +285,6 @@ public class Database{
 			case "employeeID":
 				for(Fee f : fees){
 					if(f.getEmployeeID().equals(value)){
-						found.add(f);
-					}
-				}
-				break;
-			case "isVoid":
-				for(Fee f : fees){
-					if(f.getVoid() && value.equals("true")){
-						found.add(f);
-					}else if((!f.getVoid()) && value.equals("false")){
 						found.add(f);
 					}
 				}
@@ -340,6 +358,7 @@ public class Database{
 	/**********************************************************************************************************/
 
 	/*************deleting/removing stuffs********************/
+	// deletes the fee transactin in which OR number is equal to the value passed
 	public void removeFee(String or_num) throws IOException, InterruptedException{
 		int i = 0;
 		for(Fee f : fees){
@@ -351,6 +370,7 @@ public class Database{
 		}
 	}
 
+	// deletes the employee account in which the employee ID is equal to the value passed
 	public void removeEmployee(String emp_id){
 		int i = 0;
 		for(Employee e : employee_accounts){
@@ -362,6 +382,7 @@ public class Database{
 		}
 	}
 
+	// deletes the bus account in which the plate number is equal to the value passed
 	public void removeBus(String bus_plate){
 		int i = 0;
 		for(Bus b : bus_accounts){
@@ -372,70 +393,5 @@ public class Database{
 			i++;
 		}
 	}
-
 	/***********************************************/
-
-	/************sorting fees****************
-	private ArrayList<Fee> sortFees(ArrayList<String> items, String description){
-		ArrayList<Boolean> done = new ArrayList<>();
-		for(int i = 0; i < fees.size(); i++){
-			done.add(false);
-		}
-
-		int counter = 0;
-		ArrayList<Fee> sorted = new ArrayList<>();
-		while(counter < fees.size()){
-			String item = items.get(counter);
-			for(int i = 0; i < fees.size(); i++){
-				if(description.equals("timePaid")){
-					if(fees.get(i).getTimePaid().equals(item) && !done.get(i)){
-						sorted.add(fees.get(i));
-						counter++;
-						done.set(i, true);
-					}
-				}else if(description.equals("datePaid")){
-					if(fees.get(i).getDatePaid().equals(item) && !done.get(i)){
-						sorted.add(fees.get(i));
-						counter++;
-						done.set(i, true);
-					}
-				}else if(description.equals("orNum")){
-					if(fees.get(i).getORNum().equals(item) && !done.get(i)){
-						sorted.add(fees.get(i));
-						counter++;
-						done.set(i, true);
-					}
-				}
-			}
-		}
-		return sorted;
-	}
-
-	public ArrayList<Fee> sortFee(String description){ // description: timePaid, datePaid, orNum
-		ArrayList<String> items = new ArrayList<>();
-		switch(description){
-			case "timePaid":
-				for(Fee f : fees){
-					items.add(f.getTimePaid());
-				}
-				break;
-			case "datePaid":
-				for(Fee f : fees){
-					items.add(f.getDatePaid());
-				}
-				break;
-			case "orNum":
-				for(Fee f : fees){
-					items.add(f.getORNum());
-				}
-				break;
-		}
-		Collections.sort(items);
-		ArrayList<Fee> sorted = sortFees(items, description);
-		for(Fee f : sorted){
-			System.out.println(f.getFeeType());
-		}
-		return sorted;
-	}*/
-
 }

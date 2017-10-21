@@ -16,13 +16,17 @@ import javafx.stage.Stage;
  * @author alboresallyssa
  */
 public class EchoProject extends Application {
-    
+
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLArrivalWindow.fxml"));
+        stage.setTitle("Cashier");
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+
+        //System.out.println("java version: "+System.getProperty("java.version"));
+        //System.out.println("javafx.version: " + System.getProperty("javafx.version"));
     }
 
     /**
@@ -31,5 +35,5 @@ public class EchoProject extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+
 }
