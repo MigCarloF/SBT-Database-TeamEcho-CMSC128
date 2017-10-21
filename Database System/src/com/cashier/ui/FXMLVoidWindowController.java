@@ -11,10 +11,12 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
 public class FXMLVoidWindowController {
+    Stage anotherStage = new Stage();
 
     @FXML
     private JFXButton voidWindowSendRequest;
@@ -87,15 +89,14 @@ public class FXMLVoidWindowController {
 
     @FXML
     void voidWindowSendRequestPressed(ActionEvent event) throws IOException {
-        //TODO: Make this like a popup window, not change scene
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("../../cashier/ui/FXMLVoidRequestWindow.fxml"));
-        Scene tableViewScene = new Scene(tableViewParent);
-
-        //This line gets the Stage information
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        window.setScene(tableViewScene);
-        window.show();
+        // TODO: fix error "java.lang.IllegalStateException: Cannot set style once stage has been set visible"
+        FXMLLoader anotherLoader = new FXMLLoader(getClass().getResource("../../cashier/ui/FXMLVoidRequestWindow.fxml"));
+        Parent anotherRoot = anotherLoader.load();
+        //anotherStage.centerOnScreen();  //does not really work idk
+        Scene anotherScene = new Scene(anotherRoot);
+        anotherStage.setScene(anotherScene);
+        anotherStage.initStyle(StageStyle.UNDECORATED); //removes the title bar of the window
+        anotherStage.show();
     }
 
     @FXML
@@ -121,5 +122,4 @@ public class FXMLVoidWindowController {
         window.setScene(tableViewScene);
         window.show();
     }
-
 }

@@ -4,6 +4,9 @@ import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class FXMLVoidRequestWindowController {
 
@@ -23,7 +26,9 @@ public class FXMLVoidRequestWindowController {
     private Text voidRequestWindowText3;    //Reason for avoiding
 
     @FXML
-    void voidRequestWindowCancelPressed(ActionEvent event) {
+    void voidRequestWindowCancelPressed(ActionEvent event) throws IOException {
+        Stage stage = (Stage) voidRequestWindowCancel.getScene().getWindow();
+        stage.close();
 
     }
 
