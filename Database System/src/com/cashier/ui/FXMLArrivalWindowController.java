@@ -339,6 +339,7 @@ public class FXMLArrivalWindowController implements Initializable {
         minibusFDD.setEditable(true);
         minibusFDD.setPromptText("MINIBUS");
 
+
         //TODO DELETE THIS AFTER DATABASE IS DONE
         database = Database.database;
     }
