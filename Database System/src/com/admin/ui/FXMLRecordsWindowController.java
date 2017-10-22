@@ -79,7 +79,7 @@ public class FXMLRecordsWindowController {
 
     }
 
-    public void initialize(URL url, ResourceBundle rb) {
+    void initialize(URL url, ResourceBundle rb) {
         /**
          * This part is for the initialization of the Combo Box.
          * TODO: Every item in the menu when chosen, another scene will be
