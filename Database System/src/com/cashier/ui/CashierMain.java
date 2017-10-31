@@ -21,7 +21,7 @@ public class CashierMain extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLVoidWindow.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("FXMLArrivalWindow.fxml"));
         stage.setTitle("Cashier");
         Scene scene = new Scene(root);
         stage.setScene(scene);

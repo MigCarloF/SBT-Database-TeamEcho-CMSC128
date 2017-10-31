@@ -82,9 +82,9 @@
             <TableColumn fx:id="columnOrNum" minWidth="0.0" prefWidth="143.0" style="-fx-background-color: D3E1AC;" text="OR#" />
         </columns>
       </TableView>
-      <TextField fx:id="txtTotalArrivalFees" layoutX="454.0" layoutY="572.0" prefHeight="30.0" prefWidth="140.0" />
-      <TextField fx:id="txtTotalLoadingFees" layoutX="593.0" layoutY="572.0" prefHeight="30.0" prefWidth="140.0" />
-      <TextField fx:id="txtTotalAllFees" layoutX="454.0" layoutY="601.0" prefHeight="30.0" prefWidth="279.0" />
+      <TextField fx:id="txtTotalArrivalFees" layoutX="453.0" layoutY="572.0" prefHeight="30.0" prefWidth="200.0" />
+      <TextField fx:id="txtTotalLoadingFees" layoutX="652.0" layoutY="572.0" prefHeight="30.0" prefWidth="200.0" />
+      <TextField fx:id="txtTotalAllFees" layoutX="453.0" layoutY="601.0" prefHeight="30.0" prefWidth="399.0" />
       <Text layoutX="401.0" layoutY="620.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TOTAL">
          <font>
             <Font name="System Bold" size="12.0" />
