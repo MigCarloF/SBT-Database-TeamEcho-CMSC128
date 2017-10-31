@@ -1,13 +1,13 @@
 package com.admin.ui;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXComboBox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -26,7 +26,7 @@ public class FXMLCurrentWindowController {
     private JFXButton busProfilesCreateProfileButton;
 
     @FXML
-    private JFXComboBox currentMenu;
+    private ComboBox currentMenu;
 
     @FXML
     private JFXButton currentGoButton;
@@ -75,8 +75,15 @@ public class FXMLCurrentWindowController {
     }
 
     @FXML
-    void currentLogoutButtonPressed(ActionEvent event) {
+    void currentLogoutButtonPressed(ActionEvent event) throws IOException {
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("../../loginform/FXMLLoginFormWindow.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
 
+        //This line gets the Stage information
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        window.setScene(tableViewScene);
+        window.show();
     }
 
     public void initialize(URL url, ResourceBundle rb) {
