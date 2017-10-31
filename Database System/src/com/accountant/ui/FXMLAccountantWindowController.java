@@ -24,9 +24,7 @@ import java.time.Month;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class Controller implements Initializable {
-
-
+public class FXMLAccountantWindowController implements Initializable {
     @FXML
     private TableView<FeeTable> tableView;
     @FXML
@@ -90,11 +88,9 @@ public class Controller implements Initializable {
                     public void updateItem(LocalDate item, boolean empty) {
                         if (item.isBefore(dateStartDate.getValue())) {
                             setDisable(true);
-                            setStyle("-fx-background-color: #b3b5b0;");
                         }
                         if (item.isAfter(LocalDate.now())){
                             setDisable(true);
-                            setStyle("-fx-background-color: #b3b5b0;");
                         }
                     }
                 };
@@ -114,6 +110,8 @@ public class Controller implements Initializable {
             window.setScene(tableViewScene);
             window.show();
     }
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //disable manual input of dates and disables selection of days after current day
