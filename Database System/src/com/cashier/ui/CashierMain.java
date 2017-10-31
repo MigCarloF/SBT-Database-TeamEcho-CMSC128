@@ -22,7 +22,7 @@ public class CashierMain extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLArrivalWindow.fxml"));
-        stage.setTitle("Cashier");
+        stage.setTitle("Cebu South Bus Terminal");
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

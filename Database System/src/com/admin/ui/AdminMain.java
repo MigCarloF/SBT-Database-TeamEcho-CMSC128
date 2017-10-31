@@ -22,7 +22,7 @@ public class AdminMain extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLBusProfiles.fxml"));
         
         Scene scene = new Scene(root);
-        stage.setTitle("Admin");
+        stage.setTitle("Cebu South Bus Terminal");
         stage.setScene(scene);
         stage.show();
     }

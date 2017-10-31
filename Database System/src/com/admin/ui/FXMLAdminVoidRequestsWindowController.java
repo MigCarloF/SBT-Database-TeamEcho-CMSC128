@@ -1,20 +1,21 @@
 package com.admin.ui;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXComboBox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class FXMLAdminVoidRequestsWindowController  {
+public class FXMLAdminVoidRequestsWindowController implements Initializable {
 
     @FXML
     private JFXButton adminVoidRequestsButton;
@@ -26,7 +27,7 @@ public class FXMLAdminVoidRequestsWindowController  {
     private JFXButton busProfilesCreateProfileButton;
 
     @FXML
-    private JFXComboBox adminVoidRequestsMenu;
+    private ComboBox adminVoidRequestsMenu;
 
     @FXML
     private JFXButton adminVoidRequestsGoButton;
@@ -75,7 +76,7 @@ public class FXMLAdminVoidRequestsWindowController  {
     }
 
     @FXML
-    void busProfilesCreateProfilePressed(ActionEvent event) {
+    void adminVoidRequestButtonPressed(ActionEvent event) {
 
     }
 
@@ -88,7 +89,7 @@ public class FXMLAdminVoidRequestsWindowController  {
 
         adminVoidRequestsMenu.getItems().addAll("CURRENT", "RECORDS", "VOID REQUESTS", "BUS PROFILES");
         adminVoidRequestsMenu.setVisibleRowCount(4);
-        adminVoidRequestsMenu.setEditable(true);
+        adminVoidRequestsMenu.setEditable(false);
         adminVoidRequestsMenu.setPromptText("VOID REQUESTS");
     }
 

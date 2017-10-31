@@ -17,7 +17,7 @@ public class LoginFormMain extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLLoginFormWindow.fxml"));
-        stage.setTitle("Login Form");
+        stage.setTitle("Cebu South Bus Terminal");
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

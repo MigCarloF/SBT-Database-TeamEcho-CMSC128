@@ -11,7 +11,7 @@ public class AccountantMain extends Application {
     @Override
     public void start(Stage stage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("FXMLAccountantWindow.fxml"));
-        stage.setTitle("Accountant");
+        stage.setTitle("Cebu South Bus Terminal");
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

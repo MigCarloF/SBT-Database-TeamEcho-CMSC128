@@ -5,13 +5,7 @@
  */
 package com.admin.ui;
 
-import com.jfoenix.controls.*;
-import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,10 +13,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TreeTableView;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 
 import java.io.IOException;
 import java.net.URL;
@@ -41,13 +34,13 @@ public class FXMLBusProfilesController implements Initializable {
     private JFXButton busProfilesLogoutButton;
 
     @FXML
-    private JFXTreeTableView<BusProfile> busProfilesTable;
+    private TreeTableView busProfilesTable;
     
     @FXML
     private JFXButton busProfilesCreateProfileButton;
     
     @FXML
-    private JFXComboBox busProfilesMenu;
+    private ComboBox busProfilesMenu;
     
     @FXML
     private JFXButton busProfilesGoButton;
@@ -58,8 +51,15 @@ public class FXMLBusProfilesController implements Initializable {
     }
 
     @FXML
-    void busProfilesLogoutButtonPressed(ActionEvent event) {
+    void busProfilesLogoutButtonPressed(ActionEvent event) throws IOException {
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("../../loginform/FXMLLoginFormWindow.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
 
+        //This line gets the Stage information
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        window.setScene(tableViewScene);
+        window.show();
     }
     
     @FXML
@@ -108,7 +108,7 @@ public class FXMLBusProfilesController implements Initializable {
          *       Delete and edit a bus profile (with the database)
          */
         
-        JFXTreeTableColumn<BusProfile, String> franchise0 = new JFXTreeTableColumn<>("FRANCHISE");
+        /*JFXTreeTableColumn<BusProfile, String> franchise0 = new JFXTreeTableColumn<>("FRANCHISE");
         franchise0.setPrefWidth(95);
         franchise0.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<BusProfile, String>, ObservableValue<String>>() {
             @Override
@@ -196,7 +196,7 @@ public class FXMLBusProfilesController implements Initializable {
          *  Below are just sample profiles:
          */
         
-        ObservableList<BusProfile> busProfile = FXCollections.observableArrayList();
+        /*ObservableList<BusProfile> busProfile = FXCollections.observableArrayList();
         busProfile.add(new BusProfile("CERES", "Rodney E. Santarin", "09569081042", "ABC 123", "regular", 
             "Toledo", "aircon", "65", "160"));
         busProfile.add(new BusProfile("CERES", "Rodney E. Santarin", "09569081042", "DEF 456", "regular", 
@@ -212,7 +212,7 @@ public class FXMLBusProfilesController implements Initializable {
         busProfilesTable.getColumns().setAll(franchise0, contactPerson0, contactNum0, plateNum0, busSize0, route0,
                 busType0, capacity0, fare0);
         busProfilesTable.setRoot(root);
-        busProfilesTable.setShowRoot(false);
+        busProfilesTable.setShowRoot(false);*/
         
         /**
          * This part is for the initialization of the Combo Box.
@@ -222,11 +222,11 @@ public class FXMLBusProfilesController implements Initializable {
         
         busProfilesMenu.getItems().addAll("CURRENT", "RECORDS", "VOID REQUESTS", "BUS PROFILES");
         busProfilesMenu.setVisibleRowCount(4);
-        busProfilesMenu.setEditable(true);
+        busProfilesMenu.setEditable(false);
         busProfilesMenu.setPromptText("BUS PROFILES");
     }
 
-    public class BusProfile extends RecursiveTreeObject<BusProfile> {
+    /*public class BusProfile extends RecursiveTreeObject<BusProfile> {
         StringProperty fare;
         StringProperty capacity;
         StringProperty busType;
@@ -250,6 +250,6 @@ public class FXMLBusProfilesController implements Initializable {
             this.capacity = new SimpleStringProperty(capacity);
             this.fare = new SimpleStringProperty(fare);
         }
-    }
+    }*/
     
 }
