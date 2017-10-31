@@ -16,7 +16,7 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.ResourceBundle;
 
-public class LoginController implements Initializable {
+public class FXMLLoginFormWindowController implements Initializable {
 
     public void accountantButtonPushed(ActionEvent event) throws IOException {
         Parent tableViewParent = FXMLLoader.load(getClass().getResource("../accountant/ui/FXMLAccountantWindow.fxml"));
@@ -28,6 +28,7 @@ public class LoginController implements Initializable {
         window.setScene(tableViewScene);
         window.show();
     }
+
     public void cashierButtonPushed(ActionEvent event) throws IOException {
         Parent tableViewParent = FXMLLoader.load(getClass().getResource("../cashier/ui/FXMLArrivalWindow.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
@@ -38,6 +39,17 @@ public class LoginController implements Initializable {
         window.setScene(tableViewScene);
         window.show();
     }
+
+    public void adminButtonPushed(ActionEvent event) throws IOException {
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("../admin/ui/FXMLCurrentWindow.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        window.setScene(tableViewScene);
+        window.show();
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Database database = Database.database;
