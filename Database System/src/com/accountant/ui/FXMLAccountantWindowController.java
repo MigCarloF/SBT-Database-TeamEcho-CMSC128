@@ -130,6 +130,7 @@ public class FXMLAccountantWindowController implements Initializable {
                 };
             }
         };
+
         dateEndDate.setDayCellFactory(dayCellFactory);
         dateStartDate.setDayCellFactory(dayCellFactory);
         dateStartDate.setEditable(false);

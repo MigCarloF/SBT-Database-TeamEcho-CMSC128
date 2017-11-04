@@ -75,11 +75,11 @@
       </AnchorPane>
       <TableView id="table" fx:id="tableView" layoutX="102.0" layoutY="223.0" prefHeight="350.0" prefWidth="750.0">
         <columns>
-          <TableColumn fx:id="columnFranchise" prefWidth="195.0" style="-fx-background-color: #D3E1AC; -fx-border-color: #efefef;" text="FRANCHISE" />
-          <TableColumn fx:id="columnBusType" minWidth="0.0" prefWidth="168.0" style="-fx-background-color: #D3E1AC; -fx-border-color: #efefef;" text="BUS TYPE" />
-            <TableColumn fx:id="columnArrivalFee" minWidth="0.0" prefWidth="125.0" style="-fx-background-color: #D3E1AC; -fx-border-color: #efefef;" text="AF" />
-            <TableColumn fx:id="columnLoadingFee" minWidth="0.0" prefWidth="125.0" style="-fx-background-color: D3E1AC; -fx-border-color: #efefef;" text="LF" />
-            <TableColumn fx:id="columnOrNum" minWidth="0.0" prefWidth="143.0" style="-fx-background-color: D3E1AC; -fx-border-color: #efefef;" text="OR#" />
+          <TableColumn id="columnFranchise" fx:id="columnFranchise" prefWidth="195.0" style="-fx-background-color: #D3E1AC; -fx-border-color: #efefef;" text="FRANCHISE" />
+          <TableColumn id="columnBusType" fx:id="columnBusType" minWidth="0.0" prefWidth="168.0" style="-fx-background-color: #D3E1AC; -fx-border-color: #efefef;" text="BUS TYPE" />
+            <TableColumn id="columnArrivalFee" fx:id="columnArrivalFee" minWidth="0.0" prefWidth="125.0" style="-fx-background-color: #D3E1AC; -fx-border-color: #efefef;" text="AF" />
+            <TableColumn id="columnLoadingFee" fx:id="columnLoadingFee" minWidth="0.0" prefWidth="125.0" style="-fx-background-color: D3E1AC; -fx-border-color: #efefef;" text="LF" />
+            <TableColumn id="columnOrNum" fx:id="columnOrNum" minWidth="0.0" prefWidth="143.0" style="-fx-background-color: D3E1AC; -fx-border-color: #efefef;" text="OR#" />
         </columns>
       </TableView>
       <TextField fx:id="txtTotalArrivalFees" layoutX="466.0" layoutY="572.0" prefHeight="30.0" prefWidth="125.0" />

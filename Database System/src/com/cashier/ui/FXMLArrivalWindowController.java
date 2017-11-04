@@ -25,9 +25,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
 
-/**
- * @author alboresallyssa
- */
 public class FXMLArrivalWindowController implements Initializable {
     //These items are for the buttons in arrival window
     @FXML

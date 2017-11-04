@@ -21,10 +21,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-/**
- *
- * @author alboresallyssa
- */
 public class FXMLBusProfilesController implements Initializable {
     
     @FXML

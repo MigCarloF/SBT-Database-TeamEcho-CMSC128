@@ -9,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TreeTableColumn;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -16,6 +17,36 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class FXMLRecordsWindowController implements Initializable {
+
+    @FXML
+    private TreeTableColumn<?, ?> recordsFranchise;
+
+    @FXML
+    private TreeTableColumn<?, ?> recordsBusType;
+
+    @FXML
+    private TreeTableColumn<?, ?> recordsPlateNo;
+
+    @FXML
+    private TreeTableColumn<?, ?> recordsRoute;
+
+    @FXML
+    private TreeTableColumn<?, ?> recordsStatus;
+
+    @FXML
+    private TreeTableColumn<?, ?> recordsArrivalTime;
+
+    @FXML
+    private TreeTableColumn<?, ?> recordsDepartureTime;
+
+    @FXML
+    private TreeTableColumn<?, ?> recordsArrivalFee;
+
+    @FXML
+    private TreeTableColumn<?, ?> recordsLoadingFee;
+
+    @FXML
+    private TreeTableColumn<?, ?> recordsORNum;
 
     @FXML
     private JFXButton recordsAdminButton;
@@ -33,13 +64,8 @@ public class FXMLRecordsWindowController implements Initializable {
     private JFXButton recordsGoButton;
 
     @FXML
-    void busProfilesCreateProfilePressed(ActionEvent event) {
-
-    }
-
-    @FXML
     void recordsAdminButton(ActionEvent event) {
-
+        //TODO
     }
 
     @FXML
@@ -88,12 +114,6 @@ public class FXMLRecordsWindowController implements Initializable {
     }
 
     public void initialize(URL url, ResourceBundle rb) {
-        /**
-         * This part is for the initialization of the Combo Box.
-         * TODO: Every item in the menu when chosen, another scene will be
-         * opened to the item's corresponding scene (change scene/stage).
-         */
-
         recordsMenu.getItems().addAll("CURRENT", "RECORDS", "VOID REQUESTS", "BUS PROFILES");
         recordsMenu.setVisibleRowCount(4);
         recordsMenu.setEditable(false);

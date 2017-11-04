@@ -11,11 +11,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-/**
- *
- * @author alboresallyssa
- */
-
 public class CashierMain extends Application {
     public static boolean cancelPressed = false;
 
