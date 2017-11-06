@@ -48,8 +48,16 @@
             <Font size="16.0" />
          </font>
       </Text>
-      <TextField layoutX="40.0" layoutY="111.0" prefHeight="33.0" prefWidth="250.0" style="-fx-border-color: #A9A9A9;" />
-      <TextField layoutX="40.0" layoutY="184.0" prefHeight="33.0" prefWidth="250.0" style="-fx-border-color: #A9A9A9;" />
+      <TextField fx:id="createProfileCPerson" layoutX="40.0" layoutY="111.0" prefHeight="33.0" prefWidth="250.0" promptText="Rodney E. Santarin" style="-fx-border-color: #A9A9A9;">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="createProfileCNumber" layoutX="40.0" layoutY="184.0" prefHeight="33.0" prefWidth="250.0" promptText="09569081042" style="-fx-border-color: #A9A9A9;">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
       <Text layoutX="40.0" layoutY="255.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Franchise:">
          <font>
             <Font size="16.0" />
@@ -70,19 +78,51 @@
             <Font size="16.0" />
          </font>
       </Text>
-      <TextField layoutX="127.0" layoutY="233.0" prefHeight="33.0" prefWidth="250.0" style="-fx-border-color: #A9A9A9;" />
-      <TextField layoutX="127.0" layoutY="275.0" prefHeight="33.0" prefWidth="250.0" style="-fx-border-color: #A9A9A9;" />
-      <TextField layoutX="127.0" layoutY="317.0" prefHeight="33.0" prefWidth="250.0" style="-fx-border-color: #A9A9A9;" />
-      <TextField layoutX="127.0" layoutY="359.0" prefHeight="33.0" prefWidth="250.0" style="-fx-border-color: #A9A9A9;" />
-      <TextField layoutX="508.0" layoutY="233.0" prefHeight="33.0" prefWidth="250.0" style="-fx-border-color: #A9A9A9;" />
+      <TextField fx:id="createProfileFranchise" layoutX="127.0" layoutY="233.0" prefHeight="33.0" prefWidth="250.0" promptText="CERES" style="-fx-border-color: #A9A9A9;">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="createProfilePlateNo" layoutX="127.0" layoutY="275.0" prefHeight="33.0" prefWidth="250.0" promptText="ABC123" style="-fx-border-color: #A9A9A9;">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="createProfileBusNo" layoutX="127.0" layoutY="317.0" prefHeight="33.0" prefWidth="250.0" promptText="34" style="-fx-border-color: #A9A9A9;">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="createProfileSize" layoutX="127.0" layoutY="359.0" prefHeight="33.0" prefWidth="250.0" promptText="MINI BUS" style="-fx-border-color: #A9A9A9;">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="createProfileCapacity" layoutX="508.0" layoutY="233.0" prefHeight="33.0" prefWidth="250.0" promptText="150" style="-fx-border-color: #A9A9A9;">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
       <Text layoutX="427.0" layoutY="255.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Capacity:">
          <font>
             <Font size="16.0" />
          </font>
       </Text>
-      <TextField layoutX="508.0" layoutY="275.0" prefHeight="33.0" prefWidth="250.0" style="-fx-border-color: #A9A9A9;" />
-      <TextField layoutX="508.0" layoutY="317.0" prefHeight="33.0" prefWidth="250.0" style="-fx-border-color: #A9A9A9;" />
-      <TextField layoutX="508.0" layoutY="359.0" prefHeight="33.0" prefWidth="250.0" style="-fx-border-color: #A9A9A9;" />
+      <TextField fx:id="createProfileType" layoutX="508.0" layoutY="275.0" prefHeight="33.0" prefWidth="250.0" promptText="AIRCON" style="-fx-border-color: #A9A9A9;">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="createProfileRoute" layoutX="508.0" layoutY="317.0" prefHeight="33.0" prefWidth="250.0" promptText="CEBU - DUMAGUETE" style="-fx-border-color: #A9A9A9;">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="createProfileFare" layoutX="508.0" layoutY="359.0" prefHeight="33.0" prefWidth="250.0" promptText="80" style="-fx-border-color: #A9A9A9;">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
       <Text layoutX="427.0" layoutY="297.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type:">
          <font>
             <Font size="16.0" />

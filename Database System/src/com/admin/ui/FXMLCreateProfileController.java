@@ -27,6 +27,36 @@ public class FXMLCreateProfileController implements Initializable {
     private TextField createProfileAccountNo;
 
     @FXML
+    private TextField createProfileCPerson;
+
+    @FXML
+    private TextField createProfileCNumber;
+
+    @FXML
+    private TextField createProfileFranchise;
+
+    @FXML
+    private TextField createProfilePlateNo;
+
+    @FXML
+    private TextField createProfileBusNo;
+
+    @FXML
+    private TextField createProfileSize;
+
+    @FXML
+    private TextField createProfileCapacity;
+
+    @FXML
+    private TextField createProfileType;
+
+    @FXML
+    private TextField createProfileRoute;
+
+    @FXML
+    private TextField createProfileFare;
+
+    @FXML
     void createProfileCancelPressed(ActionEvent event) {
         Stage stage = (Stage) createProfileCancelButton.getScene().getWindow();
         stage.close();
@@ -34,7 +64,7 @@ public class FXMLCreateProfileController implements Initializable {
 
     @FXML
     void createProfileCreatePressed(ActionEvent event) {
-
+        //TODO: get inputs
     }
 
 
