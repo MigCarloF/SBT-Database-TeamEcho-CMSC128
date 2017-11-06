@@ -65,6 +65,28 @@ public class FXMLCreateProfileController implements Initializable {
     @FXML
     void createProfileCreatePressed(ActionEvent event) {
         //TODO: get inputs
+        String contactPerson = createProfileCPerson.getText();
+        String contactNumber = createProfileCNumber.getText();
+        String franchise = createProfileFranchise.getText();
+        String plateNumber = createProfilePlateNo.getText();
+        String busNumber = createProfileBusNo.getText();
+        String size = createProfileSize.getText();
+        String capacity = createProfileCapacity.getText();
+        String type = createProfileType.getText();
+        String route = createProfileRoute.getText();
+        String fare = createProfileFare.getText();
+
+        System.out.println("Contact person: " + contactPerson + "\nContact Number: " + contactNumber + "\nFranchise: "
+        + franchise + "\nPlate number: " + plateNumber + "\nBus number: " + busNumber + "\nSize: " + size +
+        "\nCapacity: " + capacity + "\nType: " + type + "\nRoute: " + route + "\nFare: " + fare);
+
+        /**
+         * Add data to database
+         */
+
+         // closes the window
+        Stage stage = (Stage) createProfileCreateButton.getScene().getWindow();
+        stage.close();
     }
 
 
