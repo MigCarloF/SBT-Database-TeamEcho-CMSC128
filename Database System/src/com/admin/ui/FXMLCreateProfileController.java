@@ -92,7 +92,8 @@ public class FXMLCreateProfileController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        int latestNumberOfBusProfiles = 71; //TODO: get the current number of bus profiles in the database
+        createProfileAccountNo.setText(String.valueOf(latestNumberOfBusProfiles + 1));
     }    
     
 }
