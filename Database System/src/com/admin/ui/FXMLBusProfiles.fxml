@@ -76,5 +76,10 @@
             <TreeTableColumn minWidth="0.0" prefWidth="79.0" style="-fx-background-color: #d3e1ac; -fx-border-color: #efefef;" text="FARE" />
          </columns>
       </TreeTableView>
+      <JFXButton fx:id="busProfilesEditButton" layoutX="476.0" layoutY="628.0" onAction="#busProfilesEditProfileButtonPressed" prefHeight="30.0" prefWidth="220.0" style="-fx-background-color: #D3E1AC;" text="EDIT">
+         <font>
+            <Font name="Open Sans Semibold" size="15.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>

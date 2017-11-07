@@ -46,6 +46,9 @@ public class FXMLBusProfilesController implements Initializable {
     private JFXButton busProfilesGoButton;
 
     @FXML
+    private JFXButton busProfilesEditButton;
+
+    @FXML
     void busProfilesAdminButton(ActionEvent event) throws IOException {
         //BRANDON!!!!!
         FXMLLoader anotherLoader = new FXMLLoader(getClass().getResource("../../admin/ui/FXMLCreateAccount.fxml"));
@@ -82,6 +85,32 @@ public class FXMLBusProfilesController implements Initializable {
 
         window.setScene(tableViewScene);
         window.show();
+    }
+
+    @FXML
+    void busProfilesEditProfileButtonPressed(ActionEvent event) throws IOException {
+        FXMLLoader anotherLoader = new FXMLLoader(getClass().getResource("../../admin/ui/FXMLEditBusProfile.fxml"));
+        Parent anotherRoot = anotherLoader.load();
+        Scene anotherScene = new Scene(anotherRoot);
+        createProfileStage.setScene(anotherScene);
+        createProfileStage.initStyle(StageStyle.UNDECORATED); //removes the title bar of the window
+
+        /**
+         *  The bus profiles window is "refreshed" every time the create profile
+         *  button is pressed due to an error. The error is caused from removing
+         *  the title bar of the window. The same as what I did in void request.
+         */
+
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("../../admin/ui/FXMLBusProfiles.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+
+        //This line gets the Stage information
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        window.setScene(tableViewScene);
+        window.show();
+
+        createProfileStage.show();
     }
     
     @FXML
@@ -145,118 +174,6 @@ public class FXMLBusProfilesController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        /**
-         * This part will be used to initialize the tree table view.
-         * TODO: Create profile window
-         *       Delete and edit a bus profile (with the database)
-         */
-        
-        /*JFXTreeTableColumn<BusProfile, String> franchise0 = new JFXTreeTableColumn<>("FRANCHISE");
-        franchise0.setPrefWidth(95);
-        franchise0.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<BusProfile, String>, ObservableValue<String>>() {
-            @Override
-            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<BusProfile, String> param) {
-                return param.getValue().getValue().franchise;
-            }
-        });
-        
-        JFXTreeTableColumn<BusProfile, String> contactPerson0 = new JFXTreeTableColumn<>("CONTACT PERSON");
-        contactPerson0.setPrefWidth(149);
-        contactPerson0.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<BusProfile, String>, ObservableValue<String>>() {
-            @Override
-            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<BusProfile, String> param) {
-                return param.getValue().getValue().contactPerson;
-            }
-        });
-        
-        JFXTreeTableColumn<BusProfile, String> contactNum0 = new JFXTreeTableColumn<>("CONTACT NUMBER");
-        contactNum0.setPrefWidth(135);
-        contactNum0.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<BusProfile, String>, ObservableValue<String>>() {
-            @Override
-            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<BusProfile, String> param) {
-                return param.getValue().getValue().contactNum;
-            }
-        });
-        
-        JFXTreeTableColumn<BusProfile, String> plateNum0 = new JFXTreeTableColumn<>("PLATE#");
-        plateNum0.setPrefWidth(85);
-        plateNum0.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<BusProfile, String>, ObservableValue<String>>() {
-            @Override
-            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<BusProfile, String> param) {
-                return param.getValue().getValue().plateNum;
-            }
-        });
-        
-        JFXTreeTableColumn<BusProfile, String> busSize0 = new JFXTreeTableColumn<>("SIZE");
-        busSize0.setPrefWidth(90);
-        busSize0.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<BusProfile, String>, ObservableValue<String>>() {
-            @Override
-            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<BusProfile, String> param) {
-                return param.getValue().getValue().busSize;
-            }
-        });
-        
-        JFXTreeTableColumn<BusProfile, String> route0 = new JFXTreeTableColumn<>("ROUTE");
-        route0.setPrefWidth(115);
-        route0.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<BusProfile, String>, ObservableValue<String>>() {
-            @Override
-            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<BusProfile, String> param) {
-                return param.getValue().getValue().route;
-            }
-        });
-        
-        JFXTreeTableColumn<BusProfile, String> busType0 = new JFXTreeTableColumn<>("TYPE");
-        busType0.setPrefWidth(100);
-        busType0.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<BusProfile, String>, ObservableValue<String>>() {
-            @Override
-            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<BusProfile, String> param) {
-                return param.getValue().getValue().busType;
-            }
-        });
-        
-        JFXTreeTableColumn<BusProfile, String> capacity0 = new JFXTreeTableColumn<>("CAPACITY");
-        capacity0.setPrefWidth(80);
-        capacity0.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<BusProfile, String>, ObservableValue<String>>() {
-            @Override
-            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<BusProfile, String> param) {
-                return param.getValue().getValue().capacity;
-            }
-        });
-        
-        JFXTreeTableColumn<BusProfile, String> fare0 = new JFXTreeTableColumn<>("FARE");
-        fare0.setPrefWidth(60);
-        fare0.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<BusProfile, String>, ObservableValue<String>>() {
-            @Override
-            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<BusProfile, String> param) {
-                return param.getValue().getValue().fare;
-            }
-        });
-        
-        /**
-         *  A create profile window will be made and the data 
-         *  inputted in the window will be sent to the database
-         *  and the table.
-         *  Below are just sample profiles:
-         */
-        
-        /*ObservableList<BusProfile> busProfile = FXCollections.observableArrayList();
-        busProfile.add(new BusProfile("CERES", "Rodney E. Santarin", "09569081042", "ABC 123", "regular", 
-            "Toledo", "aircon", "65", "160"));
-        busProfile.add(new BusProfile("CERES", "Rodney E. Santarin", "09569081042", "DEF 456", "regular", 
-            "Pinamungajan", "non-aircon", "56", "75"));
-        busProfile.add(new BusProfile("CERES", "Rodney E. Santarin", "09569081042", "GHI 789", "minibus", 
-            "Balamban", "aircon", "50", "85"));
-        busProfile.add(new BusProfile("SUNRAYS", "Rey Figues", "09163204123", "KJL 101", "regular", 
-            "Argao", "aircon", "53", "83"));
-        busProfile.add(new BusProfile("JHADE", "Alison Nator", "09339772585", "MNO 112", "minibus", 
-            "Bato/Oslob", "aircon", "53", "107"));
-        
-        final TreeItem<BusProfile> root = new RecursiveTreeItem<BusProfile>(busProfile, RecursiveTreeObject::getChildren);
-        busProfilesTable.getColumns().setAll(franchise0, contactPerson0, contactNum0, plateNum0, busSize0, route0,
-                busType0, capacity0, fare0);
-        busProfilesTable.setRoot(root);
-        busProfilesTable.setShowRoot(false);*/
-        
         /**
          * This part is for the initialization of the Combo Box.
          * TODO: Every item in the menu when chosen, another scene will be 
