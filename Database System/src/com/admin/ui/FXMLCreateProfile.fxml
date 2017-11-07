@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
+        
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXRadioButton?>
 <?import javafx.scene.control.TextField?>
@@ -142,7 +142,7 @@
             <Font size="14.0" />
          </font>
       </TextField>
-      <TextField editable="false" layoutX="587.0" layoutY="56.0" prefHeight="30.0" prefWidth="207.0" style="-fx-background-color: #ffffff;" text="*Complete all required details">
+      <TextField fx:id="createProfileAlert" editable="false" layoutX="587.0" layoutY="56.0" prefHeight="30.0" prefWidth="207.0" style="-fx-background-color: #ffffff;" text="*Complete all required details">
          <font>
             <Font name="System Italic" size="14.0" />
          </font>

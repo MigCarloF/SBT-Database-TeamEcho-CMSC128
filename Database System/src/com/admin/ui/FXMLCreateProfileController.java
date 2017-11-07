@@ -18,6 +18,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class FXMLCreateProfileController implements Initializable {
+    //BRANDON!!!!!
+    final ToggleGroup sizeGroup = new ToggleGroup();
+    final ToggleGroup typeGroup = new ToggleGroup();
 
     @FXML
     private JFXButton createProfileCancelButton;
@@ -67,6 +70,10 @@ public class FXMLCreateProfileController implements Initializable {
     @FXML
     private TextField createProfileRoute2;
 
+    //THIS
+    @FXML
+    private TextField createProfileAlert;
+
     @FXML
     void createProfileCancelPressed(ActionEvent event) {
         Stage stage = (Stage) createProfileCancelButton.getScene().getWindow();
@@ -88,30 +95,9 @@ public class FXMLCreateProfileController implements Initializable {
         String fare = createProfileFare.getText();
 
         //BRANDON!!!!!
-        /**
-         *  Wala na workkkk, pwede gihapon ma select ang duha rip
-         */
-        final ToggleGroup sizeGroup = new ToggleGroup();
-        final ToggleGroup typeGroup = new ToggleGroup();
 
-        radioBoxMiniBus.setToggleGroup(sizeGroup);
-        radioBoxBus.setToggleGroup(sizeGroup);
-
-        radioBoxAircon.setToggleGroup(typeGroup);
-        radioBoxNonAircon.setToggleGroup(typeGroup);
-
-        typeGroup.selectedToggleProperty().addListener((ov, old_toggle, new_toggle) -> {
-            if (typeGroup.getSelectedToggle() != null) {
-                typeGroup.getSelectedToggle().getUserData().toString();
-            }
-        });
-
-        sizeGroup.selectedToggleProperty().addListener((ov, old_toggle, new_toggle) -> {
-            if (sizeGroup.getSelectedToggle() != null) {
-                sizeGroup.getSelectedToggle().getUserData().toString();
-            }
-        });
-
+        //System.out.println("Toggled: " + sizeGroup.getSelectedToggle().getUserData().toString());
+        //System.out.println("Toggled: " + typeGroup.getSelectedToggle().getUserData().toString());
         System.out.println("Contact person: " + contactPerson + "\nContact Number: " + contactNumber + "\nFranchise: "
         + franchise + "\nPlate number: " + plateNumber + "\nBus number: " + busNumber + "\nSize: " + size +
         "\nCapacity: " + capacity + "\nType: " + type + "\nRoute: " + route1 + " - " + route2 + "\nFare: " + fare);
@@ -130,6 +116,13 @@ public class FXMLCreateProfileController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         int latestNumberOfBusProfiles = 71; //TODO: get the current number of bus profiles in the database
         createProfileAccountNo.setText(String.valueOf(latestNumberOfBusProfiles + 1));
+
+        //BRANDON!!!!!
+        radioBoxMiniBus.setToggleGroup(sizeGroup);
+        radioBoxBus.setToggleGroup(sizeGroup);
+
+        radioBoxAircon.setToggleGroup(typeGroup);
+        radioBoxNonAircon.setToggleGroup(typeGroup);
     }    
     
 }
