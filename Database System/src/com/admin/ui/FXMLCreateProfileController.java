@@ -22,6 +22,9 @@ public class FXMLCreateProfileController implements Initializable {
     final ToggleGroup sizeGroup = new ToggleGroup();
     final ToggleGroup typeGroup = new ToggleGroup();
 
+    static String type = "";
+    static String size = "";
+
     @FXML
     private JFXButton createProfileCancelButton;
 
@@ -87,20 +90,17 @@ public class FXMLCreateProfileController implements Initializable {
         String franchise = createProfileFranchise.getText();
         String plateNumber = createProfilePlateNo.getText();
         String busNumber = createProfileBusNo.getText();
-        String size = "";
         String capacity = createProfileCapacity.getText();
-        String type = "";
         String route1 = createProfileRoute1.getText();
         String route2 = createProfileRoute2.getText();
         String fare = createProfileFare.getText();
 
         //BRANDON!!!!!
 
-        //ahhhhhhhhhhhh 
-        typeGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
-            String value = observable.getValue().toString();
-            System.out.println(value);
-        });
+        //ahhhhhhhhhhhh
+
+
+
         System.out.println("Contact person: " + contactPerson + "\nContact Number: " + contactNumber + "\nFranchise: "
         + franchise + "\nPlate number: " + plateNumber + "\nBus number: " + busNumber + "\nSize: " + size +
         "\nCapacity: " + capacity + "\nType: " + type + "\nRoute: " + route1 + " - " + route2 + "\nFare: " + fare);
@@ -126,6 +126,22 @@ public class FXMLCreateProfileController implements Initializable {
 
         radioBoxAircon.setToggleGroup(typeGroup);
         radioBoxNonAircon.setToggleGroup(typeGroup);
-    }    
+
+        typeGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
+            type = observable.getValue().toString();
+            type = type.substring(type.indexOf("'")+1, type.lastIndexOf("'"));
+            System.out.println(type);
+        });
+
+        sizeGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
+            size = observable.getValue().toString();
+            size = size.substring(size.indexOf("'")+1, size.lastIndexOf("'"));
+            System.out.println(size);
+        });
+
+        if(size.equals("MINI BUS")) {
+            
+        }
+    }
     
 }
