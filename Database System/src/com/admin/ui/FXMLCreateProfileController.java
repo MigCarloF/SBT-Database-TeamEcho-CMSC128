@@ -96,8 +96,11 @@ public class FXMLCreateProfileController implements Initializable {
 
         //BRANDON!!!!!
 
-        //System.out.println("Toggled: " + sizeGroup.getSelectedToggle().getUserData().toString());
-        //System.out.println("Toggled: " + typeGroup.getSelectedToggle().getUserData().toString());
+        //ahhhhhhhhhhhh 
+        typeGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
+            String value = observable.getValue().toString();
+            System.out.println(value);
+        });
         System.out.println("Contact person: " + contactPerson + "\nContact Number: " + contactNumber + "\nFranchise: "
         + franchise + "\nPlate number: " + plateNumber + "\nBus number: " + busNumber + "\nSize: " + size +
         "\nCapacity: " + capacity + "\nType: " + type + "\nRoute: " + route1 + " - " + route2 + "\nFare: " + fare);
