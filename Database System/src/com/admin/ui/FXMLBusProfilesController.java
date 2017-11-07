@@ -24,6 +24,7 @@ import java.util.ResourceBundle;
 
 public class FXMLBusProfilesController implements Initializable {
     Stage createProfileStage = new Stage();
+    Stage createAccountStage = new Stage();
 
     @FXML
     private JFXButton busProfilesAdminButton;
@@ -44,8 +45,29 @@ public class FXMLBusProfilesController implements Initializable {
     private JFXButton busProfilesGoButton;
 
     @FXML
-    void busProfilesAdminButton(ActionEvent event) {
+    void busProfilesAdminButton(ActionEvent event) throws IOException {
+        FXMLLoader anotherLoader = new FXMLLoader(getClass().getResource("../../admin/ui/FXMLCreateAccount.fxml"));
+        Parent anotherRoot = anotherLoader.load();
+        Scene anotherScene = new Scene(anotherRoot);
+        createAccountStage.setScene(anotherScene);
+        createAccountStage.initStyle(StageStyle.UNDECORATED); //removes the title bar of the window
 
+        /**
+         *  The bus profiles window is "refreshed" every time the create profile
+         *  button is pressed due to an error. The error is caused from removing
+         *  the title bar of the window. The same as what I did in void request.
+         */
+
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("../../admin/ui/FXMLBusProfiles.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+
+        //This line gets the Stage information
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        window.setScene(tableViewScene);
+        window.show();
+
+        createAccountStage.show();
     }
 
     @FXML
