@@ -35,11 +35,6 @@ public class FXMLCurrentWindowController implements Initializable {
     private JFXButton currentGoButton;
 
     @FXML
-    void busProfilesCreateProfilePressed(ActionEvent event) {
-
-    }
-
-    @FXML
     void currentAdminButton(ActionEvent event) throws IOException {
         FXMLLoader anotherLoader = new FXMLLoader(getClass().getResource("../../admin/ui/FXMLCreateAccount.fxml"));
         Parent anotherRoot = anotherLoader.load();

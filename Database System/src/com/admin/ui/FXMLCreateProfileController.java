@@ -87,7 +87,9 @@ public class FXMLCreateProfileController implements Initializable {
         String route2 = createProfileRoute2.getText();
         String fare = createProfileFare.getText();
 
-        // Radio buttons:
+        /**
+         *  Wala na workkkk, pwede gihapon ma select ang duha rip
+         */
         final ToggleGroup sizeGroup = new ToggleGroup();
         final ToggleGroup typeGroup = new ToggleGroup();
 

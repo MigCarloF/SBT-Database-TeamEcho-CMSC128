@@ -66,7 +66,7 @@ public class FXMLRecordsWindowController implements Initializable {
     private JFXButton recordsGoButton;
 
     @FXML
-    void recordsAdminButton(ActionEvent event) throws IOException {
+    void recordsAdminButtonPressed(ActionEvent event) throws IOException {
         FXMLLoader anotherLoader = new FXMLLoader(getClass().getResource("../../admin/ui/FXMLCreateAccount.fxml"));
         Parent anotherRoot = anotherLoader.load();
         Scene anotherScene = new Scene(anotherRoot);
