@@ -34,6 +34,12 @@ public class FXMLCreateAccountController implements Initializable {
     private ComboBox createAccountType;
 
     @FXML
+    private TextField createAccountFirstName;
+
+    @FXML
+    private TextField createAccountLastName;
+
+    @FXML
     void createAccountCancelPressed(ActionEvent event) {
         Stage stage = (Stage) createAccountCancelButton.getScene().getWindow();
         stage.close();
@@ -43,9 +49,12 @@ public class FXMLCreateAccountController implements Initializable {
     void createProfileCreatePressed(ActionEvent event) {
         String username = createAccountUsername.getText();
         String password = createAccountPassword.getText();
+        String firstName = createAccountFirstName.getText();
+        String lastName = createAccountLastName.getText();
         String accountType = createAccountType.getValue().toString();
 
-        System.out.println("Username: " + username + "\nPassword: " + password + "\nAccount type: " + accountType);
+        System.out.println("Username: " + username + "\nPassword: " + password + "\nAccount type: " + accountType
+        + "\nFirst name: " + firstName + "\nLast name: " + lastName);
 
         // closes the window
         Stage stage = (Stage) createAccountCreateButton.getScene().getWindow();
