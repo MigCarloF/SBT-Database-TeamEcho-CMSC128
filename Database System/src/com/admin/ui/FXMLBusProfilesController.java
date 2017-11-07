@@ -45,6 +45,7 @@ public class FXMLBusProfilesController implements Initializable {
     @FXML
     private JFXButton busProfilesGoButton;
 
+    //BRANDON!!!!!
     @FXML
     private JFXButton busProfilesEditButton;
 
@@ -89,6 +90,7 @@ public class FXMLBusProfilesController implements Initializable {
 
     @FXML
     void busProfilesEditProfileButtonPressed(ActionEvent event) throws IOException {
+        //BRANDON!!!!!
         FXMLLoader anotherLoader = new FXMLLoader(getClass().getResource("../../admin/ui/FXMLEditBusProfile.fxml"));
         Parent anotherRoot = anotherLoader.load();
         Scene anotherScene = new Scene(anotherRoot);
@@ -185,31 +187,4 @@ public class FXMLBusProfilesController implements Initializable {
         busProfilesMenu.setEditable(false);
         busProfilesMenu.setPromptText("BUS PROFILES");
     }
-
-    /*public class BusProfile extends RecursiveTreeObject<BusProfile> {
-        StringProperty fare;
-        StringProperty capacity;
-        StringProperty busType;
-        StringProperty route;
-        StringProperty busSize;
-        StringProperty plateNum;
-        StringProperty contactNum;
-        StringProperty contactPerson;
-        StringProperty franchise;
-        
-        // constructor for the bus profiles
-        public BusProfile(String franchise, String contactPerson, String contactNum, 
-                String plateNum, String busSize, String route, String busType, String capacity, String fare) {
-            this.franchise = new SimpleStringProperty(franchise);
-            this.contactPerson = new SimpleStringProperty(contactPerson);
-            this.contactNum = new SimpleStringProperty(contactNum);
-            this.plateNum = new SimpleStringProperty(plateNum);
-            this.busSize = new SimpleStringProperty(busSize);
-            this.route = new SimpleStringProperty(route);
-            this.busType = new SimpleStringProperty(busType);
-            this.capacity = new SimpleStringProperty(capacity);
-            this.fare = new SimpleStringProperty(fare);
-        }
-    }*/
-    
 }
