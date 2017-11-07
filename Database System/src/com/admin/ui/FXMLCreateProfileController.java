@@ -87,6 +87,7 @@ public class FXMLCreateProfileController implements Initializable {
         String route2 = createProfileRoute2.getText();
         String fare = createProfileFare.getText();
 
+        //BRANDON!!!!!
         /**
          *  Wala na workkkk, pwede gihapon ma select ang duha rip
          */

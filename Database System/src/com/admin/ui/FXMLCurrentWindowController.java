@@ -17,6 +17,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class FXMLCurrentWindowController implements Initializable {
+    //BRANDON!!!!!
     Stage createAccountStage = new Stage();
 
     @FXML
@@ -36,6 +37,7 @@ public class FXMLCurrentWindowController implements Initializable {
 
     @FXML
     void currentAdminButton(ActionEvent event) throws IOException {
+        //BRANDON!!!!!
         FXMLLoader anotherLoader = new FXMLLoader(getClass().getResource("../../admin/ui/FXMLCreateAccount.fxml"));
         Parent anotherRoot = anotherLoader.load();
         Scene anotherScene = new Scene(anotherRoot);
