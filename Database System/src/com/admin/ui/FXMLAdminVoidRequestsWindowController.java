@@ -1,6 +1,8 @@
 package com.admin.ui;
 
 import com.jfoenix.controls.JFXButton;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +21,8 @@ import java.util.ResourceBundle;
 public class FXMLAdminVoidRequestsWindowController implements Initializable {
     //BRANDON!!!!!
     Stage createAccountStage = new Stage();
+    //THIS
+    Stage currentStage = new Stage();
 
     @FXML
     private JFXButton adminVoidRequestsButton;
@@ -31,9 +35,6 @@ public class FXMLAdminVoidRequestsWindowController implements Initializable {
 
     @FXML
     private ComboBox adminVoidRequestsMenu;
-
-    @FXML
-    private JFXButton adminVoidRequestsGoButton;
 
     @FXML
     void adminVoidRequestsButtonPressed(ActionEvent event) throws IOException {
@@ -60,39 +61,6 @@ public class FXMLAdminVoidRequestsWindowController implements Initializable {
         window.show();
 
         createAccountStage.show();
-    }
-
-    @FXML
-    void adminVoidRequestsGoButtonPressed(ActionEvent event) throws IOException {
-        if(adminVoidRequestsMenu.getValue().equals("CURRENT")) {
-            Parent tableViewParent = FXMLLoader.load(getClass().getResource("FXMLCurrentWindow.fxml"));
-            Scene tableViewScene = new Scene(tableViewParent);
-            //This line gets the Stage information
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            window.setScene(tableViewScene);
-            window.show();
-        } else if(adminVoidRequestsMenu.getValue().equals("RECORDS")) {
-            Parent tableViewParent = FXMLLoader.load(getClass().getResource("FXMLRecordsWindow.fxml"));
-            Scene tableViewScene = new Scene(tableViewParent);
-            //This line gets the Stage information
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            window.setScene(tableViewScene);
-            window.show();
-        } else if(adminVoidRequestsMenu.getValue().equals("VOID REQUESTS")) {
-            Parent tableViewParent = FXMLLoader.load(getClass().getResource("FXMLAdminVoidRequestsWindow.fxml"));
-            Scene tableViewScene = new Scene(tableViewParent);
-            //This line gets the Stage information
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            window.setScene(tableViewScene);
-            window.show();
-        } else if(adminVoidRequestsMenu.getValue().equals("BUS PROFILES")) {
-            Parent tableViewParent = FXMLLoader.load(getClass().getResource("FXMLBusProfiles.fxml"));
-            Scene tableViewScene = new Scene(tableViewParent);
-            //This line gets the Stage information
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            window.setScene(tableViewScene);
-            window.show();
-        }
     }
 
     @FXML
@@ -123,6 +91,57 @@ public class FXMLAdminVoidRequestsWindowController implements Initializable {
         adminVoidRequestsMenu.setVisibleRowCount(4);
         adminVoidRequestsMenu.setEditable(false);
         adminVoidRequestsMenu.setPromptText("VOID REQUESTS");
+
+        //THIS
+        adminVoidRequestsMenu.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number number2) {
+                Stage stage = (Stage) adminVoidRequestsButton.getScene().getWindow();
+                if(adminVoidRequestsMenu.getItems().get((Integer) number2).equals("CURRENT")) {
+                    FXMLLoader anotherLoader = new FXMLLoader(getClass().getResource("../../admin/ui/FXMLCurrentWindow.fxml"));
+                    Parent anotherRoot = null;
+                    try {
+                        anotherRoot = anotherLoader.load();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    Scene anotherScene = new Scene(anotherRoot);
+                    currentStage.setScene(anotherScene);
+                } else if (adminVoidRequestsMenu.getItems().get((Integer) number2).equals("RECORDS")) {
+                    FXMLLoader anotherLoader = new FXMLLoader(getClass().getResource("../../admin/ui/FXMLRecordsWindow.fxml"));
+                    Parent anotherRoot = null;
+                    try {
+                        anotherRoot = anotherLoader.load();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    Scene anotherScene = new Scene(anotherRoot);
+                    currentStage.setScene(anotherScene);
+                } else if (adminVoidRequestsMenu.getItems().get((Integer) number2).equals("VOID REQUESTS")) {
+                    FXMLLoader anotherLoader = new FXMLLoader(getClass().getResource("../../admin/ui/FXMLAdminVoidRequestsWindow.fxml"));
+                    Parent anotherRoot = null;
+                    try {
+                        anotherRoot = anotherLoader.load();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    Scene anotherScene = new Scene(anotherRoot);
+                    currentStage.setScene(anotherScene);
+                } else if (adminVoidRequestsMenu.getItems().get((Integer) number2).equals("BUS PROFILES")) {
+                    FXMLLoader anotherLoader = new FXMLLoader(getClass().getResource("../../admin/ui/FXMLBusProfiles.fxml"));
+                    Parent anotherRoot = null;
+                    try {
+                        anotherRoot = anotherLoader.load();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    Scene anotherScene = new Scene(anotherRoot);
+                    currentStage.setScene(anotherScene);
+                }
+                stage.close();
+                currentStage.show();
+            }
+        });
     }
 
 }
