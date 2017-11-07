@@ -10,11 +10,6 @@ import javafx.fxml.Initializable;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-/**
- * FXML Controller class
- *
- * @author alboresallyssa
- */
 public class FXMLCreateAccountController implements Initializable {
 
     /**
