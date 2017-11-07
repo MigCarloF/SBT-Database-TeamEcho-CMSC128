@@ -96,11 +96,6 @@ public class FXMLCreateProfileController implements Initializable {
         String fare = createProfileFare.getText();
 
         //BRANDON!!!!!
-
-        //ahhhhhhhhhhhh
-
-
-
         System.out.println("Contact person: " + contactPerson + "\nContact Number: " + contactNumber + "\nFranchise: "
         + franchise + "\nPlate number: " + plateNumber + "\nBus number: " + busNumber + "\nSize: " + size +
         "\nCapacity: " + capacity + "\nType: " + type + "\nRoute: " + route1 + " - " + route2 + "\nFare: " + fare);
@@ -139,9 +134,7 @@ public class FXMLCreateProfileController implements Initializable {
             System.out.println(size);
         });
 
-        if(size.equals("MINI BUS")) {
-            
-        }
+
     }
     
 }
