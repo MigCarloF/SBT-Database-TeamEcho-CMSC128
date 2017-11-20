@@ -1,68 +1,104 @@
 package com.cashier.ui;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.JFXDatePicker;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
-public class FXMLTransactionsController {
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-    @FXML
-    private JFXButton cashierPrintButton;
-
-    @FXML
-    private TextField cashierPlateNo;
-
-    @FXML
-    private JFXCheckBox cashierArrivalFee;
+public class FXMLTransactionsController implements Initializable {
 
     @FXML
-    private JFXCheckBox cashierLoadingFee;
+    private Text cashierUserText;
 
     @FXML
-    private JFXButton cashierAccountButton;
+    private JFXButton transactLogoutButton;
 
     @FXML
-    private JFXButton cashierLogoutButton;
+    private TableView transactionsTable;
 
     @FXML
-    private JFXButton cashierTransactButton;
+    private TableColumn<?, ?> transactDate;
 
     @FXML
-    private JFXButton cashierVoidRequest;
+    private TableColumn<?, ?> transactTime;
 
     @FXML
-    private JFXButton cashierPreviousTransact;
+    private TableColumn<?, ?> transactOR;
 
     @FXML
-    void cashierAccountButtonPressed(ActionEvent event) {
+    private TableColumn<?, ?> transactFee;
+
+    @FXML
+    private TableColumn<?, ?> transactAmount;
+
+    @FXML
+    private TableColumn<?, ?> transactStatus;
+
+    @FXML
+    private TextField transactQuantityAF;
+
+    @FXML
+    private TextField transactQuantityLF;
+
+    @FXML
+    private TextField transactAmountAF;
+
+    @FXML
+    private TextField transactAmountLF;
+
+    @FXML
+    private TextField transactTotalRevenue;
+
+    @FXML
+    private JFXDatePicker transactDateFrom;
+
+    @FXML
+    private JFXDatePicker transactDateTo;
+
+    @FXML
+    private JFXButton transactBackButton;
+
+    @FXML
+    void transactLogoutButtonPressed(ActionEvent event) {
 
     }
 
     @FXML
-    void cashierLogoutButtonPressed(ActionEvent event) {
+    void transactBackButtonPressed(ActionEvent event) throws IOException {
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("../../cashier/ui/FXMLMainCashierWindow.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
 
+        //This line gets the Stage information
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        window.setScene(tableViewScene);
+        window.show();
     }
 
-    @FXML
-    void cashierPreviousTransactPressed(ActionEvent event) {
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        cashierUserText.setText("Sir Joey");
+        transactQuantityAF.setText("9");
+        transactQuantityLF.setText("9");
+        transactAmountAF.setText("450");
+        transactAmountLF.setText("1050");
+        transactTotalRevenue.setText("1600");
+
+
 
     }
-
-    @FXML
-    void cashierPrintButtonPressed(ActionEvent event) {
-
-    }
-
-    @FXML
-    void cashierTransactButtonPressed(ActionEvent event) {
-
-    }
-
-    @FXML
-    void cashierVoidRequestPressed(ActionEvent event) {
-
-    }
-
 }

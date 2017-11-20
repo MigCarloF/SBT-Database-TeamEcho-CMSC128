@@ -23,12 +23,12 @@
             <Image url="@LOGO.png" />
          </image>
       </ImageView>
-      <Text fill="WHITE" layoutX="599.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome," wrappingWidth="87.13671875">
+      <Text fill="WHITE" layoutX="563.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome," wrappingWidth="87.13671875">
          <font>
             <Font name="Consolas" size="18.0" />
          </font>
       </Text>
-      <Text fx:id="cashierUserText" fill="WHITE" layoutX="680.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="JJuan" wrappingWidth="50.5859375">
+      <Text fx:id="cashierUserText" fill="WHITE" layoutX="644.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="JJuan" wrappingWidth="123.99999503977597">
          <font>
             <Font name="Consolas" size="18.0" />
          </font>
