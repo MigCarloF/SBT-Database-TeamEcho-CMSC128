@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
@@ -20,6 +21,7 @@ import java.util.ResourceBundle;
 
 public class FXMLMainCashierWindowController implements Initializable {
     //These items are for the buttons in arrival window
+    Stage anotherStage = new Stage();
     @FXML
     private Text cashierUserText;
 
@@ -153,7 +155,20 @@ public class FXMLMainCashierWindowController implements Initializable {
 
     @FXML
     void arrivalWindowVoidPressed(ActionEvent event) throws IOException {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("../../cashier/ui/FXMLVoidWindow.fxml"));
+        FXMLLoader anotherLoader = new FXMLLoader(getClass().getResource("../../cashier/ui/FXMLVoidWindow.fxml"));
+        Parent anotherRoot = anotherLoader.load();
+        //anotherStage.centerOnScreen();  //does not really work idk
+        Scene anotherScene = new Scene(anotherRoot);
+        anotherStage.setScene(anotherScene);
+        anotherStage.initStyle(StageStyle.UNDECORATED);
+
+        voidWindowVoidPressed(event);
+        anotherStage.show();
+    }
+
+    @FXML
+    void voidWindowVoidPressed(ActionEvent event) throws IOException {
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("../../cashier/ui/FXMLMainCashierWindow.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
 
         //This line gets the Stage information
