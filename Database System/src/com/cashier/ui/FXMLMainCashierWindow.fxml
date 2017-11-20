@@ -315,5 +315,20 @@
             <DropShadow />
          </effect>
       </JFXButton>
+      <JFXButton fx:id="rangeButton" alignment="TOP_LEFT" layoutX="24.0" layoutY="519.0" onAction="#rangeButtonPressed" prefHeight="42.0" prefWidth="283.0" style="-fx-background-color: #f2db58;" text="INPUT O.R. NUMBER RANGE">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </JFXButton>
+      <Text fill="WHITE" layoutX="24.0" layoutY="678.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CURRENT:" wrappingWidth="87.13672310113907">
+         <font>
+            <Font name="Consolas" size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="currentORNumber" fill="WHITE" layoutX="104.0" layoutY="678.0" strokeType="OUTSIDE" strokeWidth="0.0" text="000142" wrappingWidth="123.99999503977597">
+         <font>
+            <Font name="Consolas" size="18.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

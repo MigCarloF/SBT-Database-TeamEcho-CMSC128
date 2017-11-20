@@ -102,6 +102,12 @@ public class FXMLMainCashierWindowController implements Initializable {
     private JFXButton transactionsButton;
 
     @FXML
+    private JFXButton rangeButton;
+
+    @FXML
+    private Text currentORNumber;
+
+    @FXML
     void busPrintButtonPressed(ActionEvent event) {
         String plateNum = plateNumber.getText();
 
@@ -113,8 +119,6 @@ public class FXMLMainCashierWindowController implements Initializable {
         if (loadingFee.isSelected()) {
             loading = true;
         }
-
-
     }
 
     @FXML
@@ -142,7 +146,10 @@ public class FXMLMainCashierWindowController implements Initializable {
         window.show();
     }
 
+    @FXML
+    void rangeButtonPressed(ActionEvent event) {
 
+    }
 
     @FXML
     void arrivalWindowVoidPressed(ActionEvent event) throws IOException {
@@ -183,5 +190,7 @@ public class FXMLMainCashierWindowController implements Initializable {
         amount9.setText("1");
 
         totalCashier.setText("1886");
+
+        currentORNumber.setText("000142");
     }
 }
