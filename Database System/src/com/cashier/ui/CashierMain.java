@@ -16,7 +16,7 @@ public class CashierMain extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLArrivalWindow.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("FXMLMainCashierWindow.fxml"));
         stage.setTitle("Cebu South Bus Terminal");
         Scene scene = new Scene(root);
         stage.setScene(scene);

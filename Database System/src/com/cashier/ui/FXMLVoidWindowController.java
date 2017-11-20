@@ -204,7 +204,7 @@ public class FXMLVoidWindowController implements Initializable {
 
     @FXML
     void voidWindowTransactPressed(ActionEvent event) throws IOException {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("../../cashier/ui/FXMLArrivalWindow.fxml"));
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("FXMLMainCashierWindow.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
 
         //This line gets the Stage information

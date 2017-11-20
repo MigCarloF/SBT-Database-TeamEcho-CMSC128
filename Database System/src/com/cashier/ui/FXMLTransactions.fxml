@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="950.0" style="-fx-background-color: #F7F5E6;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cashier.ui.FXMLTransactionsController">
+   <children>
+      <AnchorPane layoutX="75.0" layoutY="184.0" prefHeight="225.0" prefWidth="475.0" style="-fx-background-color: #FFFFFF;">
+         <children>
+            <Text layoutX="25.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Plate number">
+               <font>
+                  <Font name="Courier New" size="18.0" />
+               </font>
+            </Text>
+            <AnchorPane opacity="0.75" prefHeight="40.0" prefWidth="500.0" style="-fx-background-color: #D3E1AC;">
+               <children>
+                  <Text layoutX="171.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TRANSACTIONS">
+                     <font>
+                        <Font name="Courier New" size="22.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+            <JFXButton fx:id="cashierPrintButton" layoutY="192.0" onAction="#cashierPrintButtonPressed" prefHeight="35.0" prefWidth="500.0" style="-fx-background-color: #D3E1AC;" text="Print">
+               <font>
+                  <Font name="Courier New" size="18.0" />
+               </font>
+            </JFXButton>
+            <TextField fx:id="cashierPlateNo" layoutX="25.0" layoutY="83.0" prefHeight="45.0" prefWidth="170.0" style="-fx-background-color: #ffffff; -fx-border-color: #a9a9a9;" />
+            <JFXCheckBox fx:id="cashierArrivalFee" layoutX="25.0" layoutY="138.0" prefHeight="40.0" prefWidth="212.0" text="Arrival Fee (P50)">
+               <font>
+                  <Font name="Courier New" size="17.0" />
+               </font>
+            </JFXCheckBox>
+            <JFXCheckBox fx:id="cashierLoadingFee" layoutX="267.0" layoutY="138.0" prefHeight="40.0" prefWidth="224.0" text="Loading Fee (P150)">
+               <font>
+                  <Font name="Courier New" size="17.0" />
+               </font>
+            </JFXCheckBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane opacity="0.75" prefHeight="100.0" prefWidth="950.0" style="-fx-background-color: #D3E1AC;">
+         <children>
+            <ImageView fitHeight="85.0" fitWidth="85.0" layoutX="21.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Ph_seal_cebucity.png" />
+               </image>
+            </ImageView>
+            <Text layoutX="121.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cebu South Bus Terminal">
+               <font>
+                  <Font name="Open Sans Bold" size="24.0" />
+               </font>
+            </Text>
+            <JFXButton fx:id="cashierAccountButton" buttonType="RAISED" layoutX="700.0" onAction="#cashierAccountButtonPressed" prefHeight="100.0" prefWidth="125.0" style="-fx-text-fill: #000000;" text="CASH 01" textOverrun="CLIP">
+               <effect>
+                  <Lighting>
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                     </light>
+                  </Lighting>
+               </effect>
+               <font>
+                  <Font name="Courier New" size="18.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="cashierLogoutButton" buttonType="RAISED" layoutX="825.0" onAction="#cashierLogoutButtonPressed" prefHeight="100.0" prefWidth="125.0" style="-fx-text-fill: #000000;" text="LOGOUT" textOverrun="CLIP">
+               <effect>
+                  <Lighting>
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                     </light>
+                  </Lighting>
+               </effect>
+               <font>
+                  <Font name="Courier New" size="18.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="cashierTransactButton" layoutX="571.0" onAction="#cashierTransactButtonPressed" prefHeight="100.0" prefWidth="125.0" text="TRANSACT">
+               <font>
+                  <Font name="Courier New" size="18.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+      <JFXButton fx:id="cashierVoidRequest" layoutX="75.0" layoutY="443.0" onAction="#cashierVoidRequestPressed" prefHeight="32.0" prefWidth="250.0" style="-fx-background-color: #D3E1AC;" text="Submit Void Request">
+         <font>
+            <Font name="Courier New" size="18.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="cashierPreviousTransact" layoutX="75.0" layoutY="504.0" onAction="#cashierPreviousTransactPressed" prefHeight="32.0" prefWidth="350.0" style="-fx-background-color: #D3E1AC;" text="View Previous Transactions">
+         <font>
+            <Font name="Courier New" size="18.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

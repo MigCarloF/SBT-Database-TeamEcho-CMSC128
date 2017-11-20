@@ -30,7 +30,7 @@ public class FXMLLoginFormWindowController implements Initializable {
     }
 
     public void cashierButtonPushed(ActionEvent event) throws IOException {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("../cashier/ui/FXMLArrivalWindow.fxml"));
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("../cashier/ui/FXMLMainCashierWindow.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
 
         //This line gets the Stage information
