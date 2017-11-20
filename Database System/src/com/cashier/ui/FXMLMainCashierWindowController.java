@@ -149,8 +149,16 @@ public class FXMLMainCashierWindowController implements Initializable {
     }
 
     @FXML
-    void rangeButtonPressed(ActionEvent event) {
+    void rangeButtonPressed(ActionEvent event) throws IOException {
+        FXMLLoader anotherLoader = new FXMLLoader(getClass().getResource("../../cashier/ui/FXMLGetRange.fxml"));
+        Parent anotherRoot = anotherLoader.load();
+        //anotherStage.centerOnScreen();  //does not really work idk
+        Scene anotherScene = new Scene(anotherRoot);
+        anotherStage.setScene(anotherScene);
+        anotherStage.initStyle(StageStyle.UNDECORATED);
 
+        voidWindowVoidPressed(event);
+        anotherStage.show();
     }
 
     @FXML

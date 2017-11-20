@@ -61,8 +61,6 @@ public class FXMLVoidWindowController implements Initializable {
 
     }
 
-
-
     @FXML
     void voidWindowVoidPressed(ActionEvent event) throws IOException {
         Parent tableViewParent = FXMLLoader.load(getClass().getResource("../../cashier/ui/FXMLVoidRequestWindow.fxml"));
