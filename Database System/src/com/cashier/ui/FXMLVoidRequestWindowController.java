@@ -37,18 +37,15 @@ public class FXMLVoidRequestWindowController implements Initializable {
     private TextField totalTextField;
 
     @FXML
-    void sendVoidPressed(ActionEvent event) {
-        //INSERT what do
+    void cancelPressed(ActionEvent event) {
         Stage stage = (Stage) cancel.getScene().getWindow();
         CashierMain.cancelPressed = true;
         stage.close();
     }
 
     @FXML
-    void cancelPressed(ActionEvent event) {
-        /**
-         *  TODO: Solve - cancel needs to be pressed twice
-         */
+    void sendVoidPressed(ActionEvent event) {
+        //INSERT what do
         Stage stage = (Stage) cancel.getScene().getWindow();
         CashierMain.cancelPressed = true;
         stage.close();

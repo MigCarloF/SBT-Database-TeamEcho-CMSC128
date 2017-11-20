@@ -56,7 +56,6 @@ public class FXMLVoidWindowController implements Initializable {
             stage.close();
 
             voidWindowVoidPressed(event);
-            anotherStage.show();
         }
 
     }
