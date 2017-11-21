@@ -18,7 +18,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class FXMLCreateProfileController implements Initializable {
-    //BRANDON!!!!!
     final ToggleGroup sizeGroup = new ToggleGroup();
     final ToggleGroup typeGroup = new ToggleGroup();
 
@@ -30,9 +29,6 @@ public class FXMLCreateProfileController implements Initializable {
 
     @FXML
     private JFXButton createProfileCreateButton;
-
-    @FXML
-    private TextField createProfileAccountNo;
 
     @FXML
     private TextField createProfileCPerson;
@@ -47,16 +43,7 @@ public class FXMLCreateProfileController implements Initializable {
     private TextField createProfilePlateNo;
 
     @FXML
-    private TextField createProfileBusNo;
-
-    @FXML
-    private TextField createProfileCapacity;
-
-    @FXML
     private TextField createProfileRoute1;
-
-    @FXML
-    private TextField createProfileFare;
 
     @FXML
     private JFXRadioButton radioBoxMiniBus;
@@ -73,7 +60,6 @@ public class FXMLCreateProfileController implements Initializable {
     @FXML
     private TextField createProfileRoute2;
 
-    //THIS
     @FXML
     private TextField createProfileAlert;
 
@@ -89,20 +75,22 @@ public class FXMLCreateProfileController implements Initializable {
         String contactNumber = createProfileCNumber.getText();
         String franchise = createProfileFranchise.getText();
         String plateNumber = createProfilePlateNo.getText();
-        String busNumber = createProfileBusNo.getText();
-        String capacity = createProfileCapacity.getText();
         String route1 = createProfileRoute1.getText();
         String route2 = createProfileRoute2.getText();
-        String fare = createProfileFare.getText();
 
-        //BRANDON!!!!!
         System.out.println("Contact person: " + contactPerson + "\nContact Number: " + contactNumber + "\nFranchise: "
-        + franchise + "\nPlate number: " + plateNumber + "\nBus number: " + busNumber + "\nSize: " + size +
-        "\nCapacity: " + capacity + "\nType: " + type + "\nRoute: " + route1 + " - " + route2 + "\nFare: " + fare);
+        + franchise + "\nPlate number: " + plateNumber + "\nSize: " + size +
+        "\nType: " + type + "\nRoute: " + route1 + " - " + route2);
 
         /**
          * Add data to database
+         * TODO: if not all need inputs are inputted, the alert text will change color
          */
+        if(plateNumber.equals("")) {
+            // change color of createProfileAlert to red
+        } else {
+            // change back to black
+        }
 
          // closes the window
         Stage stage = (Stage) createProfileCreateButton.getScene().getWindow();
@@ -112,10 +100,6 @@ public class FXMLCreateProfileController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        int latestNumberOfBusProfiles = 71; //TODO: get the current number of bus profiles in the database
-        createProfileAccountNo.setText(String.valueOf(latestNumberOfBusProfiles + 1));
-
-        //BRANDON!!!!!
         radioBoxMiniBus.setToggleGroup(sizeGroup);
         radioBoxBus.setToggleGroup(sizeGroup);
 

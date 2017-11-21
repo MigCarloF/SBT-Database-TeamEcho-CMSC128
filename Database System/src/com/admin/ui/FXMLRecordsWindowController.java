@@ -112,8 +112,16 @@ public class FXMLRecordsWindowController implements Initializable {
     private TableColumn<?, ?> status;
 
     @FXML
-    void busCreateButtonPressed(ActionEvent event) {
+    void busCreateButtonPressed(ActionEvent event) throws IOException {
+        FXMLLoader anotherLoader = new FXMLLoader(getClass().getResource("../../admin/ui/FXMLCreateProfile.fxml"));
+        Parent anotherRoot = anotherLoader.load();
+        //anotherStage.centerOnScreen();  //does not really work idk
+        Scene anotherScene = new Scene(anotherRoot);
+        anotherStage.setScene(anotherScene);
+        anotherStage.initStyle(StageStyle.UNDECORATED);
 
+        recordsButtonPressed(event);
+        anotherStage.show();
     }
 
     @FXML
@@ -154,7 +162,7 @@ public class FXMLRecordsWindowController implements Initializable {
         anotherStage.setScene(anotherScene);
         anotherStage.initStyle(StageStyle.UNDECORATED);
 
-        employeeCreateButtonPressed(event);
+        recordsButtonPressed(event);
         anotherStage.show();
     }
 

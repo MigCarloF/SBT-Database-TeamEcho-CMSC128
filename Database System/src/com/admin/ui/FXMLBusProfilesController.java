@@ -56,8 +56,16 @@ public class FXMLBusProfilesController implements Initializable {
     private TableColumn<?, ?> type;
 
     @FXML
-    void busCreateButtonPressed(ActionEvent event) {
+    void busCreateButtonPressed(ActionEvent event) throws IOException {
+        FXMLLoader anotherLoader = new FXMLLoader(getClass().getResource("../../admin/ui/FXMLCreateProfile.fxml"));
+        Parent anotherRoot = anotherLoader.load();
+        //anotherStage.centerOnScreen();  //does not really work idk
+        Scene anotherScene = new Scene(anotherRoot);
+        anotherStage.setScene(anotherScene);
+        anotherStage.initStyle(StageStyle.UNDECORATED);
 
+        busViewButtonPressed(event);
+        anotherStage.show();
     }
 
     @FXML
