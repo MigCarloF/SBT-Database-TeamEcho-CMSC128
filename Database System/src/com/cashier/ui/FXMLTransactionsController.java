@@ -1,7 +1,6 @@
 package com.cashier.ui;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXDatePicker;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -64,10 +64,10 @@ public class FXMLTransactionsController implements Initializable {
     private TextField transactTotalRevenue;
 
     @FXML
-    private JFXDatePicker transactDateFrom;
+    private DatePicker transactDateFrom;
 
     @FXML
-    private JFXDatePicker transactDateTo;
+    private DatePicker transactDateTo;
 
     @FXML
     private JFXButton transactBackButton;
