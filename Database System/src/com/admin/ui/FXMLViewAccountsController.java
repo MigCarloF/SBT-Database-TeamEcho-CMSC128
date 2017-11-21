@@ -8,8 +8,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -19,8 +19,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class FXMLRecordsWindowController implements Initializable {
+public class FXMLViewAccountsController implements Initializable {
     Stage anotherStage = new Stage();
+
     @FXML
     private Text adminUserText;
 
@@ -31,82 +32,25 @@ public class FXMLRecordsWindowController implements Initializable {
     private TextField search;
 
     @FXML
-    private JFXButton currentButton;
+    private TableView<?> transactionsTable;
 
     @FXML
-    private JFXButton recordsButton;
+    private TableColumn<?, ?> firstName;
 
     @FXML
-    private JFXButton employeeViewButton;
+    private TableColumn<?, ?> lastName;
 
     @FXML
-    private JFXButton employeeCreateButton;
+    private TableColumn<?, ?> username;
 
     @FXML
-    private JFXButton employeeEditButton;
+    private TableColumn<?, ?> password;
 
     @FXML
-    private JFXButton busViewButton;
+    private TableColumn<?, ?> department;
 
     @FXML
-    private JFXButton busCreateButton;
-
-    @FXML
-    private JFXButton busEditButton;
-
-    @FXML
-    private DatePicker dateTo;
-
-    @FXML
-    private DatePicker dateFrom;
-
-    @FXML
-    private TextField quantityAF;
-
-    @FXML
-    private TextField quantityLF;
-
-    @FXML
-    private TextField amountAF;
-
-    @FXML
-    private TextField amountLF;
-
-    @FXML
-    private TextField totalRevenue;
-
-    @FXML
-    private TextField totalVoid;
-
-    @FXML
-    private TableColumn<?, ?> date;
-
-    @FXML
-    private TableColumn<?, ?> time;
-
-    @FXML
-    private TableColumn<?, ?> orNo;
-
-    @FXML
-    private TableColumn<?, ?> company;
-
-    @FXML
-    private TableColumn<?, ?> busType;
-
-    @FXML
-    private TableColumn<?, ?> plateNo;
-
-    @FXML
-    private TableColumn<?, ?> route;
-
-    @FXML
-    private TableColumn<?, ?> arrival;
-
-    @FXML
-    private TableColumn<?, ?> feeType;
-
-    @FXML
-    private TableColumn<?, ?> amount;
+    private TableColumn<?, ?> shift;
 
     @FXML
     private TableColumn<?, ?> status;
@@ -147,7 +91,7 @@ public class FXMLRecordsWindowController implements Initializable {
         anotherStage.setScene(anotherScene);
         anotherStage.initStyle(StageStyle.UNDECORATED);
 
-        employeeCreateButtonPressed(event);
+        employeeViewButtonPressed(event);
         anotherStage.show();
     }
 
@@ -192,15 +136,8 @@ public class FXMLRecordsWindowController implements Initializable {
         window.show();
     }
 
-    public void initialize(URL url, ResourceBundle rb) {
-        adminUserText.setText("Sir Joey");
-        totalRevenue.setText("1600");
-        quantityAF.setText("9");
-        quantityLF.setText("9");
-        amountAF.setText("450");
-        amountLF.setText("1050");
-        totalVoid.setText("10");
-
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
         /**
          *  TODO: implement search text field
          */

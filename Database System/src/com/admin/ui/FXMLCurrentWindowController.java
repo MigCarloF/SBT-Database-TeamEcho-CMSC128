@@ -93,8 +93,15 @@ public class FXMLCurrentWindowController implements Initializable {
     }
 
     @FXML
-    void employeeViewButtonPressed(ActionEvent event) {
+    void employeeViewButtonPressed(ActionEvent event) throws IOException {
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("../../admin/ui/FXMLViewAccounts.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
 
+        //This line gets the Stage information
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        window.setScene(tableViewScene);
+        window.show();
     }
 
     @FXML
@@ -106,20 +113,8 @@ public class FXMLCurrentWindowController implements Initializable {
         anotherStage.setScene(anotherScene);
         anotherStage.initStyle(StageStyle.UNDECORATED);
 
-        refreshWindow(event);
+        currentButtonPressed(event);
         anotherStage.show();
-    }
-
-    @FXML
-    void refreshWindow(ActionEvent event) throws IOException {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("../../admin/ui/FXMLCurrentWindow.fxml"));
-        Scene tableViewScene = new Scene(tableViewParent);
-
-        //This line gets the Stage information
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        window.setScene(tableViewScene);
-        window.show();
     }
 
     @FXML
