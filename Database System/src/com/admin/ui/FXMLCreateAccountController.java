@@ -17,7 +17,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class FXMLCreateAccountController implements Initializable {
-    //BRANDON!!!!! kani tanan haha
     @FXML
     private JFXButton createAccountCancelButton;
 

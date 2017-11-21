@@ -21,22 +21,22 @@
             <Image url="@BLUEGREY2.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="45.0" fitWidth="200.0" layoutX="61.0" layoutY="43.0">
+      <ImageView fitHeight="45.0" fitWidth="200.0" layoutX="58.0" layoutY="37.0">
          <image>
             <Image url="@../../cashier/ui/LOGO.png" />
          </image>
       </ImageView>
-      <Text fill="WHITE" layoutX="948.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome," wrappingWidth="87.13671875">
+      <Text fill="WHITE" layoutX="948.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome," wrappingWidth="87.13671875">
          <font>
             <Font name="Consolas" size="18.0" />
          </font>
       </Text>
-      <Text fx:id="adminUserText" fill="WHITE" layoutX="1029.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sir Joey" wrappingWidth="123.99999503977597">
+      <Text fx:id="adminUserText" fill="WHITE" layoutX="1029.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sir Joey" wrappingWidth="123.99999503977597">
          <font>
             <Font name="Consolas" size="18.0" />
          </font>
       </Text>
-      <JFXButton fx:id="logoutButton" blendMode="ADD" focusTraversable="false" layoutX="1143.0" layoutY="37.0" onAction="#logoutButtonPressed" prefHeight="50.0" prefWidth="100.0" ripplerFill="WHITE" text="Logout" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+      <JFXButton fx:id="logoutButton" blendMode="ADD" focusTraversable="false" layoutX="1143.0" layoutY="30.0" onAction="#logoutButtonPressed" prefHeight="50.0" prefWidth="100.0" ripplerFill="WHITE" text="Logout" textAlignment="CENTER" textFill="WHITE" wrapText="true">
          <font>
             <Font name="Consolas" size="18.0" />
          </font>
