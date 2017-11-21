@@ -122,8 +122,15 @@ public class FXMLRecordsWindowController implements Initializable {
     }
 
     @FXML
-    void busViewButtonPressed(ActionEvent event) {
+    void busViewButtonPressed(ActionEvent event) throws IOException {
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("../../admin/ui/FXMLBusProfiles.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
 
+        //This line gets the Stage information
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        window.setScene(tableViewScene);
+        window.show();
     }
 
     @FXML
