@@ -142,7 +142,9 @@ public class FXMLCurrentWindowController implements Initializable {
         monthlyRevenue.setText("21,600");
 
         /**
-         *  TODO: implement search button
+         *  TODO: implement search text field
          */
+
+        search.getText();
     }
 }
