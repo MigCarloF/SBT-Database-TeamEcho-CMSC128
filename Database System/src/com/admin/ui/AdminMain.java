@@ -15,7 +15,7 @@ public class AdminMain extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLBusProfiles.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("FXMLCurrentWindow.fxml"));
         
         Scene scene = new Scene(root);
         stage.setTitle("Cebu South Bus Terminal");
