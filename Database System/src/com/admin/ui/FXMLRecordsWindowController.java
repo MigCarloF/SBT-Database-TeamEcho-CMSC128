@@ -181,8 +181,21 @@ public class FXMLRecordsWindowController implements Initializable {
     }
 
     @FXML
-    void employeeEditButtonPressed(ActionEvent event) {
+    void employeeEditButtonPressed(ActionEvent event) throws IOException {
+        /**
+         *  GET SELECTED ROW THEN SET TEXT ANG SA EDIT BUS PROFILE
+         *  THEN GET TEXT
+         */
 
+        FXMLLoader anotherLoader = new FXMLLoader(getClass().getResource("../../admin/ui/FXMLEditEmployee.fxml"));
+        Parent anotherRoot = anotherLoader.load();
+        //anotherStage.centerOnScreen();  //does not really work idk
+        Scene anotherScene = new Scene(anotherRoot);
+        anotherStage.setScene(anotherScene);
+        anotherStage.initStyle(StageStyle.UNDECORATED);
+
+        recordsButtonPressed(event);
+        anotherStage.show();
     }
 
     @FXML

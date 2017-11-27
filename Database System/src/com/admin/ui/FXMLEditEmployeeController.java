@@ -41,7 +41,14 @@ public class FXMLEditEmployeeController {
 
     @FXML
     void enterPressed(ActionEvent event) {
-        //CODE HERE
+        String firstNameText = firstName.getText();
+        String lastNameText = lastName.getText();
+        String userNameText = userName.getText();
+        String passwordText = password.getText();
+
+        // closes the window
+        Stage stage = (Stage) enter.getScene().getWindow();
+        stage.close();
     }
 
 }
