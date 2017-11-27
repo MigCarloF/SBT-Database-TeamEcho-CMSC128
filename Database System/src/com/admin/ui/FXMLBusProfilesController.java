@@ -12,9 +12,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -29,7 +29,7 @@ public class FXMLBusProfilesController implements Initializable {
     private Text adminUserText;
 
     @FXML
-    private TextField search;
+    private ComboBox search;
 
     @FXML
     private TableView<?> transactionsTable;
@@ -155,9 +155,7 @@ public class FXMLBusProfilesController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         adminUserText.setText("Sir Joey");
         /**
-         *  TODO: implement search text field
+         *  TODO: implement search combo box
          */
-
-        search.getText();
     }
 }

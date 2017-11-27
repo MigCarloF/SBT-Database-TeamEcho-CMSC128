@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
@@ -28,7 +29,7 @@ public class FXMLRecordsWindowController implements Initializable {
     private JFXButton logoutButton;
 
     @FXML
-    private TextField search;
+    private ComboBox search;
 
     @FXML
     private JFXButton currentButton;
@@ -219,7 +220,5 @@ public class FXMLRecordsWindowController implements Initializable {
         /**
          *  TODO: implement search text field
          */
-
-        search.getText();
     }
 }
