@@ -66,8 +66,16 @@ public class FXMLViewAccountsController implements Initializable {
     }
 
     @FXML
-    void busEditButtonPressed(ActionEvent event) {
+    void busEditButtonPressed(ActionEvent event) throws IOException {
+        FXMLLoader anotherLoader = new FXMLLoader(getClass().getResource("../../admin/ui/FXMLEditBusProfile.fxml"));
+        Parent anotherRoot = anotherLoader.load();
+        //anotherStage.centerOnScreen();  //does not really work idk
+        Scene anotherScene = new Scene(anotherRoot);
+        anotherStage.setScene(anotherScene);
+        anotherStage.initStyle(StageStyle.UNDECORATED);
 
+        employeeViewButtonPressed(event);
+        anotherStage.show();
     }
 
     @FXML
