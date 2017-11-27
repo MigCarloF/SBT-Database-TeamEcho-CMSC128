@@ -218,7 +218,14 @@ public class FXMLRecordsWindowController implements Initializable {
         totalVoid.setText("10");
 
         /**
-         *  TODO: implement search text field
+         *  TODO: implement search combo box
          */
+
+        search.getItems().addAll(
+                "SEARCH by: ACTIVE",
+                "Search by: INACTIVE",
+                "Search by: MINIBUS",
+                "Search by: BUS"
+        );
     }
 }

@@ -151,7 +151,14 @@ public class FXMLViewAccountsController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         /**
-         *  TODO: implement search text field
+         *  TODO: implement search combo box
          */
+
+        search.getItems().addAll(
+                "SEARCH by: ACTIVE",
+                "Search by: INACTIVE",
+                "Search by: CASHIER",
+                "Search by: ADMIN"
+        );
     }
 }

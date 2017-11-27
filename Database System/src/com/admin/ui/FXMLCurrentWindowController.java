@@ -151,5 +151,12 @@ public class FXMLCurrentWindowController implements Initializable {
         adminUserText.setText("Sir Joey");
         dailyRevenue.setText("1,600");
         monthlyRevenue.setText("21,600");
+
+        search.getItems().addAll(
+                "SEARCH by: ACTIVE",
+                "Search by: INACTIVE",
+                "Search by: MINIBUS",
+                "Search by: BUS"
+        );
     }
 }

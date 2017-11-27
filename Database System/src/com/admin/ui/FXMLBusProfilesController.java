@@ -157,5 +157,11 @@ public class FXMLBusProfilesController implements Initializable {
         /**
          *  TODO: implement search combo box
          */
+
+        search.getItems().addAll(
+                "SEARCH by: MINIBUS",
+                "Search by: BUS",
+                "Search by: "
+        );
     }
 }
